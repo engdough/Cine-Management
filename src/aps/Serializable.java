@@ -1,21 +1,19 @@
 package aps;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import aps.Usuario;
 
 public class Serializable {
     
     private HashMap<String, Usuario> dadosUsuarios = new HashMap<>();
-    private final String filename = "mercado.loja";
+    private final String filename = "usuarios.cine";
 
     public Serializable(){
         load();
     }
         
-    public Usuario get(Integer idLoja){
-        return dadosUsuarios.get(idLoja);
+    public Usuario get(String cpf){
+        return dadosUsuarios.get(cpf);
     }
 
     public void put(Usuario usuario){
@@ -23,38 +21,34 @@ public class Serializable {
         persist();
     }
 
-    public ArrayList<Usuario> getList(){
-        return  new ArrayList<>(dadosUsuarios.values());
-    }
-
     public void persist(){
         try {
-            FileOutputStream fout = new FileOutputStream(filename);
-            ObjectOutputStream oo = new ObjectOutputStream(fout);
-            oo.writeObject(dadosUsuarios);
-            oo.flush();
-            fout.flush();
-            oo.close();
-            fout.close();
-            } catch (FileNotFoundException ex){
-                System.out.println("arquivo nao encontrado");
-            } catch (IOException exx){
-                System.out.println(exx);
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(dadosUsuarios);
+            objOut.flush();
+            fileOut.flush();
+            objOut.close();
+            fileOut.close();
+            } catch (FileNotFoundException e){
+                System.out.println("Arquivo não encontrado");
+            } catch (IOException e){
+                System.out.println(e);
             }
         }
         
     public  void load(){
         try { 
-            FileInputStream fin = new FileInputStream(filename);
-            ObjectInputStream oi = new ObjectInputStream(fin);
-            this.dadosUsuarios = (HashMap<String, Usuario>) oi.readObject();
-            oi.close();
-            fin.close();
-            } catch (ClassNotFoundException x){
-                System.out.println("Arquivo invalido");
+            FileInputStream fileOut = new FileInputStream(filename);
+            ObjectInputStream objIn = new ObjectInputStream(fileOut);
+            this.dadosUsuarios = (HashMap<String, Usuario>) objIn.readObject();
+            objIn.close();
+            fileOut.close();
+            } catch (ClassNotFoundException e){
+                System.out.println("Arquivo inválido");
                 persist();
-            } catch (FileNotFoundException ex){
-                System.out.println("Arquivo nao encontrado");
+            } catch (FileNotFoundException e){
+                System.out.println("Arquivo não encontrado");
             } catch (IOException e){
                 System.out.println(e);
             }

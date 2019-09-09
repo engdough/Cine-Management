@@ -6,7 +6,7 @@ public class Usuario {
     private String cpf;
     private int pontos;
 
-    public Usuario(String nome, String cpf, int pontos) {
+    public Usuario(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
         this.pontos = 0;
@@ -35,6 +35,4 @@ public class Usuario {
     public void setPontos(int pontos) {
         this.pontos = pontos;
     }
-    
-    
 }
