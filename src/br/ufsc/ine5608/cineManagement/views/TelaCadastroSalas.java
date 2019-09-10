@@ -48,13 +48,13 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Cadastro de salas");
 
-        jLabel3.setText("Nome da sala");
+        jLabel3.setText("Nome da sala:");
 
-        jLabel4.setText("Capacidade");
+        jLabel4.setText("Capacidade:");
 
         jLabel5.setText("Tipo de sala");
 
-        jLabel6.setText("Status da sala");
+        jLabel6.setText("Estado da sala");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sala normal", "Sala 3D" }));
 
