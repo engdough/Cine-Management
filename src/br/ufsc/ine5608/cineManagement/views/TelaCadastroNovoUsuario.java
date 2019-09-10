@@ -23,8 +23,8 @@ public class TelaCadastroNovoUsuario extends JFrame {
     private JTextField textEmail;
     private JLabel labelFone;
     private JTextField textFone;
-    private JButton botaoOk;
     private JButton botaoCancelar;
+    private JButton botaoOk;
 
     public TelaCadastroNovoUsuario() {
         super("Cadastro Novo Usuário");
