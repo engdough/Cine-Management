@@ -1,14 +1,18 @@
 package br.ufsc.ine5608.cineManagement.views;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
-import br.ufsc.ine5608.cineManagement.models.ConteudoTelaNovoUsuario;
+import br.ufsc.ine5608.cineManagement.models.Usuario;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TelaCadastroNovoUsuario extends JFrame {
     private JLabel titulo;
@@ -146,17 +150,24 @@ public class TelaCadastroNovoUsuario extends JFrame {
     private class GerenciadorBotoes implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            ConteudoTelaNovoUsuario conteudoTelaNovoUsuario = new ConteudoTelaNovoUsuario();
+            Usuario usuario = new Usuario();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                Date date = formatter.parse(textDataNac.getText());
+                usuario.setDataNascimento(date);
+            } catch (ParseException e){
+                e.printStackTrace();
+            }
             if (ae.getSource() == botaoCancelar) {
                 setVisible(false);
                 ControladorUsuário.getInstancia().iniciaMenuUsuario();
             } else if (ae.getSource() == botaoOk) {
                 setVisible(false);
-                conteudoTelaNovoUsuario.setCPF(textCPF.getText());
-                conteudoTelaNovoUsuario.setNome(textNome.getText());
-                conteudoTelaNovoUsuario.setEmail(textEmail.getText());
-                conteudoTelaNovoUsuario.setTelefone(textFone.getText());
-                ControladorUsuário.getInstancia().adicionaUsuario(conteudoTelaNovoUsuario);
+                usuario.setCpf(textCPF.getText());
+                usuario.setNome(textNome.getText());
+                usuario.setEmail(textEmail.getText());
+                usuario.setTelefone(textFone.getText());
+                ControladorUsuário.getInstancia().adicionaUsuario(usuario);
             }
         }
     }

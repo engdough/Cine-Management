@@ -1,7 +1,6 @@
 package br.ufsc.ine5608.cineManagement.controladores;
 
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorUsuario;
-import br.ufsc.ine5608.cineManagement.models.ConteudoTelaNovoUsuario;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
 import br.ufsc.ine5608.cineManagement.views.TelaCadastroNovoUsuario;
 import br.ufsc.ine5608.cineManagement.views.TelaListaUsuarios;
@@ -11,8 +10,6 @@ public class ControladorUsuário {
 
     private static ControladorUsuário instancia;
     private TelaUsuario telaUsuario = new TelaUsuario();
-    private TelaCadastroNovoUsuario telaCadastroNovoUsuario = new TelaCadastroNovoUsuario();
-    private TelaListaUsuarios telaListaUsuarios;
     private static MapeadorUsuario mapeadorUsuario;
 
     public ControladorUsuário(){
@@ -26,7 +23,6 @@ public class ControladorUsuário {
     }
 
     public void iniciaMenuUsuario() {
-        desativaTelas();
         telaUsuario.setVisible(true);
     }
 
@@ -40,25 +36,15 @@ public class ControladorUsuário {
     }
 
     public void cadastroNovoUsuario() {
-        telaCadastroNovoUsuario.setVisible(true);
+        new TelaCadastroNovoUsuario();
     }
 
-    public void listarUsuarios() {
-        telaListaUsuarios = new TelaListaUsuarios(mapeadorUsuario.getList());
-        telaListaUsuarios.setVisible(true);
-    }
-
-    public void adicionaUsuario(ConteudoTelaNovoUsuario usuario) {
-        Usuario novoUsuario = desempacotaUsuario(usuario);
-        mapeadorUsuario.put(novoUsuario);
+    public void adicionaUsuario(Usuario usuario) {
+        mapeadorUsuario.put(usuario);
         iniciaMenuUsuario();
     }
 
-    public Usuario desempacotaUsuario(ConteudoTelaNovoUsuario usuario) {
-        return new Usuario(usuario.getNome(), usuario.getCPF(), null, usuario.getEmail(), usuario.getTelefone());
-    }
-
-    public void desativaTelas() {
-        telaCadastroNovoUsuario.setVisible(false);
+    public void listarUsuarios() {
+        new TelaListaUsuarios(mapeadorUsuario.getList());
     }
 }

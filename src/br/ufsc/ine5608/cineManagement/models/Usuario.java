@@ -1,6 +1,8 @@
 package br.ufsc.ine5608.cineManagement.models;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Usuario implements Serializable {
@@ -13,6 +15,10 @@ public class Usuario implements Serializable {
     private String email;
     private String telefone;
     private int pontos;
+
+    public Usuario() {
+
+    }
 
     public Usuario(String nome, String cpf, Date dataNascimento, String email, String telefone) {
         this.nome = nome;
