@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaPrincipal extends JFrame {
-    private JLabel label;
-    private JButton botao1;
-    private JButton botao2;
+    private JLabel titulo;
+    private JButton menuUsuario;
+    private JButton menuFilme;
 
     public TelaPrincipal() {
         super("Cine Management");
@@ -19,25 +19,31 @@ public class TelaPrincipal extends JFrame {
         container.setLayout(new GridBagLayout());
         GridBagConstraints g = new GridBagConstraints();
 
-        label = new JLabel();
-        botao1 = new JButton();
-        botao2 = new JButton();
+        titulo = new JLabel();
+        menuUsuario = new JButton();
+        menuFilme = new JButton();
 
-        botao1.setText("Menu Usuário");
+        titulo.setText("Menu Principal");
         g.fill = GridBagConstraints.HORIZONTAL;
         g.gridx = 0;
         g.gridy = 0;
-        container.add(botao1, g);
+        container.add(titulo, g);
 
-        botao2.setText("Menu Filmes");
+        menuUsuario.setText("Menu Usuário");
         g.fill = GridBagConstraints.HORIZONTAL;
         g.gridx = 0;
         g.gridy = 1;
-        container.add(botao2, g);
+        container.add(menuUsuario, g);
+
+        menuFilme.setText("Menu Filmes");
+        g.fill = GridBagConstraints.HORIZONTAL;
+        g.gridx = 0;
+        g.gridy = 2;
+        container.add(menuFilme, g);
 
         GerenciadorBotoes btManager = new GerenciadorBotoes();
-        botao1.addActionListener(btManager);
-        botao2.addActionListener(btManager);
+        menuUsuario.addActionListener(btManager);
+        menuFilme.addActionListener(btManager);
 
         setSize(300,200);
 
@@ -50,10 +56,10 @@ public class TelaPrincipal extends JFrame {
     private class GerenciadorBotoes implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent ae){
-            if (ae.getSource() == botao1){
+            if (ae.getSource() == menuUsuario){
                 setVisible(false);
                 ControladorPrincipal.getInstancia().controlaMenu("1");
-            } else if (ae.getSource() == botao2) {
+            } else if (ae.getSource() == menuFilme) {
                 setVisible(false);
                 ControladorPrincipal.getInstancia().controlaMenu("2");
             }

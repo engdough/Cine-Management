@@ -22,7 +22,7 @@ public class ControladorPrincipal {
 
     public void controlaMenu(String opcao) {
         if(opcao.contains("1"))
-            System.out.println("contrla pessoa");
+            ControladorUsuário.getInstancia().iniciaMenuUsuario();
         else if (opcao.contains("2"))
             System.out.println("controla filme");
     }
