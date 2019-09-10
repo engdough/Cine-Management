@@ -21,7 +21,7 @@ public class MapeadorSala {
     }
 
     public void put(SalaCinema sala){
-        dadosSala.put(sala.getCodigo(), sala);
+        dadosSala.put(sala.getNome(), sala);
         persist();
     }
 
@@ -59,7 +59,7 @@ public class MapeadorSala {
     }
 
     public void remove(SalaCinema sala){
-        dadosSala.remove(sala.getCodigo());
+        dadosSala.remove(sala.getNome());
         persist();
     }
 

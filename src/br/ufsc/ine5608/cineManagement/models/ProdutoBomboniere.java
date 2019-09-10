@@ -10,6 +10,7 @@ public class ProdutoBomboniere implements Serializable {
     private String nome;
     private String descricao;
     private int estoque;
+    private float preco;
 
     public ProdutoBomboniere(String codigoBarra, String nome, String descricao) {
         this.codigoBarra = codigoBarra;
@@ -48,5 +49,13 @@ public class ProdutoBomboniere implements Serializable {
 
     public void setEstoque(int estoque) {
         this.estoque = estoque;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
 }

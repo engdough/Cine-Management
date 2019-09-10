@@ -135,7 +135,7 @@ public class TelaCadastroNovoUsuario extends JFrame {
         botaoOk.addActionListener(btManager);
         botaoCancelar.addActionListener(btManager);
 
-        setSize(600, 400);
+        setSize(600, 450);
 
         setLocationRelativeTo(null);
         setVisible(true);

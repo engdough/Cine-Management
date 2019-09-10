@@ -6,26 +6,16 @@ public class SalaCinema implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
-    private String codigo;
     private String nome;
     private int capacidade;
     private String tipoSala;
     private boolean status;
 
-    public SalaCinema(String codigo, String nome, int capacidade, String tipoSala, boolean status) {
-        this.codigo = codigo;
+    public SalaCinema(String nome, int capacidade, String tipoSala, boolean status) {
         this.nome = nome;
         this.capacidade = capacidade;
         this.tipoSala = tipoSala;
         this.status = status;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {

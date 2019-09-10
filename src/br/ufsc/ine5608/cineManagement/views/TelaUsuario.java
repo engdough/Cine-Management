@@ -81,7 +81,7 @@ public class TelaUsuario extends JFrame {
         listarUsuarios.addActionListener(btManager);
         voltar.addActionListener(btManager);
 
-        setSize(400,300);
+        setSize(600,450);
 
         setLocationRelativeTo(null);
         setVisible(true);

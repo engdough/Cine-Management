@@ -45,7 +45,7 @@ public class TelaPrincipal extends JFrame {
         menuUsuario.addActionListener(btManager);
         menuFilme.addActionListener(btManager);
 
-        setSize(300,200);
+        setSize(600,450);
 
         setLocationRelativeTo(null);
         setVisible(true);
