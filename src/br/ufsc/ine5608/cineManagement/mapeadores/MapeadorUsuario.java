@@ -1,14 +1,17 @@
 package br.ufsc.ine5608.cineManagement.mapeadores;
 
+import br.ufsc.ine5608.cineManagement.models.Usuario;
+
 import java.io.*;
+import java.util.Collection;
 import java.util.HashMap;
 
-public class Serializable {
+public class MapeadorUsuario {
 
     private HashMap<String, Usuario> dadosUsuarios = new HashMap<>();
-    private final String filename = "usuarios.cine";
+    private final String filename = "usuarios.dados";
 
-    public Serializable(){
+    public MapeadorUsuario(){
         load();
     }
 
@@ -56,5 +59,18 @@ public class Serializable {
 
     public void remove(Usuario usuario){
         dadosUsuarios.remove(usuario.getCpf());
+        persist();
+    }
+
+    public Collection<Usuario> getList() {
+        return dadosUsuarios.values();
+    }
+
+    public boolean listaVazia() {
+        return dadosUsuarios.isEmpty();
+    }
+
+    public int tamanhoLista() {
+        return dadosUsuarios.size();
     }
 }

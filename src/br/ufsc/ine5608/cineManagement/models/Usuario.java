@@ -1,4 +1,4 @@
-package br.usfc.ine5608.cineManagement;
+package br.ufsc.ine5608.cineManagement.models;
 
 import java.io.Serializable;
 import java.util.Date;
