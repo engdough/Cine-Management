@@ -40,17 +40,17 @@ public class TelaCadastroNovoUsuario extends JFrame {
         labelCPF = new JLabel();
         textCPF = new JTextField();
         labelDataNasc = new JLabel();
-        try {
-            textDataNac = new JFormattedTextField(new MaskFormatter("##/##/####"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         labelEmail = new JLabel();
         textEmail = new JTextField();
         labelFone = new JLabel();
         textFone = new JTextField();
         botaoOk = new JButton();
         botaoCancelar = new JButton();
+        try {
+            textDataNac = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         titulo.setText("Cadastrar Novo Usuário");
         g.fill = GridBagConstraints.HORIZONTAL;
