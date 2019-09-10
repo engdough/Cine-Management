@@ -4,9 +4,11 @@ import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
 import br.ufsc.ine5608.cineManagement.models.ConteudoTelaNovoUsuario;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class TelaCadastroNovoUsuario extends JFrame {
     private JLabel titulo;
@@ -16,6 +18,7 @@ public class TelaCadastroNovoUsuario extends JFrame {
     private JLabel labelCPF;
     private JTextField textCPF;
     private JLabel labelDataNasc;
+    private JTextField textDataNac;
     private JLabel labelEmail;
     private JTextField textEmail;
     private JLabel labelFone;
@@ -37,6 +40,11 @@ public class TelaCadastroNovoUsuario extends JFrame {
         labelCPF = new JLabel();
         textCPF = new JTextField();
         labelDataNasc = new JLabel();
+        try {
+            textDataNac = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         labelEmail = new JLabel();
         textEmail = new JTextField();
         labelFone = new JLabel();
@@ -83,6 +91,11 @@ public class TelaCadastroNovoUsuario extends JFrame {
         g.gridx = 0;
         g.gridy = 3;
         container.add(labelDataNasc, g);
+
+        g.fill = GridBagConstraints.HORIZONTAL;
+        g.gridx = 1;
+        g.gridy = 3;
+        container.add(textDataNac, g);
 
         labelEmail.setText("Email");
         g.fill = GridBagConstraints.HORIZONTAL;
