@@ -152,12 +152,6 @@ public class TelaCadastroNovoUsuario extends JFrame {
         public void actionPerformed(ActionEvent ae) {
             Usuario usuario = new Usuario();
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                Date date = formatter.parse(textDataNac.getText());
-                usuario.setDataNascimento(date);
-            } catch (ParseException e){
-                e.printStackTrace();
-            }
             if (ae.getSource() == botaoCancelar) {
                 setVisible(false);
                 ControladorUsuário.getInstancia().iniciaMenuUsuario();
@@ -167,6 +161,12 @@ public class TelaCadastroNovoUsuario extends JFrame {
                 usuario.setNome(textNome.getText());
                 usuario.setEmail(textEmail.getText());
                 usuario.setTelefone(textFone.getText());
+                try {
+                    Date date = formatter.parse(textDataNac.getText());
+                    usuario.setDataNascimento(date);
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
                 ControladorUsuário.getInstancia().adicionaUsuario(usuario);
             }
         }

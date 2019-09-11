@@ -57,8 +57,8 @@ public class MapeadorUsuario {
             }
         }
 
-    public void remove(Usuario usuario){
-        dadosUsuarios.remove(usuario.getCpf());
+    public void remove(String cpf){
+        dadosUsuarios.remove(cpf);
         persist();
     }
 
