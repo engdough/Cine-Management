@@ -31,10 +31,20 @@ public class ControladorUsuário {
             telaAtualizaUsuario();
         else if (opcao.contains("3"))
             removerUsuario();
+        else if (opcao.contains("4"))
+            buscaUsuario();
         else if (opcao.contains("5"))
             listarUsuarios();
         else if (opcao.contains("6"))
             ControladorPrincipal.getInstancia().iniciaSistema();
+    }
+
+    public void buscaUsuario(){
+        new TelaBuscaUsuário();
+    }
+
+    public void exibirInfoUsuario(String cpf){
+        new TelaExibeInfoUsuario(mapeadorUsuario.get(cpf));
     }
 
     public void cadastroNovoUsuario() {
