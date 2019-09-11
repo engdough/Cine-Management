@@ -30,10 +30,20 @@ public class ControladorFilme {
             telaAtualizaFilme();
         else if (opcao.contains("3"))
             removerFilme();
+        else if (opcao.contains("4"))
+            buscaFilme();
         else if (opcao.contains("5"))
             listarFilmes();
         else if (opcao.contains("6"))
             ControladorPrincipal.getInstancia().iniciaSistema();
+    }
+
+    public void buscaFilme() {
+        new TelaBuscaFilme();
+    }
+
+    public void exibirInfoFilme(String codigo) {
+        new TelaExibeInfoFilme(mapeadorFilme.get(codigo));
     }
 
     public void cadastroNovoFilme() {
