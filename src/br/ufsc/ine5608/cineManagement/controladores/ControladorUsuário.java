@@ -2,10 +2,7 @@ package br.ufsc.ine5608.cineManagement.controladores;
 
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorUsuario;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
-import br.ufsc.ine5608.cineManagement.views.TelaCadastroNovoUsuario;
-import br.ufsc.ine5608.cineManagement.views.TelaExcluirUsuario;
-import br.ufsc.ine5608.cineManagement.views.TelaListaUsuarios;
-import br.ufsc.ine5608.cineManagement.views.TelaUsuario;
+import br.ufsc.ine5608.cineManagement.views.*;
 
 public class ControladorUsuário {
 
@@ -30,6 +27,8 @@ public class ControladorUsuário {
     public void executaMenuAdocao(String opcao) {
         if (opcao.contains("1"))
             cadastroNovoUsuario();
+        else if (opcao.contains("2"))
+            telaAtualizaUsuario();
         else if (opcao.contains("3"))
             removerUsuario();
         else if (opcao.contains("5"))
@@ -40,6 +39,14 @@ public class ControladorUsuário {
 
     public void cadastroNovoUsuario() {
         new TelaCadastroNovoUsuario();
+    }
+
+    public void telaAtualizaUsuario() {
+        new TelaEscolherUsuarioAtualizar();
+    }
+
+    public void atualizaUsuario(String cpf) {
+        new TelaAtualizarUsuario(mapeadorUsuario.get(cpf));
     }
 
     public void adicionaUsuario(Usuario usuario) {
@@ -58,5 +65,10 @@ public class ControladorUsuário {
 
     public void removerUsuario() {
         new TelaExcluirUsuario();
+    }
+
+    public void atualizaInfoUsuario(Usuario usuario) {
+        mapeadorUsuario.put(usuario);
+        iniciaMenuUsuario();
     }
 }
