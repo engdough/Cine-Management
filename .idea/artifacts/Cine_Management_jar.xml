@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cine-Management:jar">
+    <output-path>$PROJECT_DIR$/../artifacts/Cine_Management_jar</output-path>
+    <root id="archive" name="Cine-Management.jar">
+      <element id="module-output" name="Cine-Management" />
+    </root>
+  </artifact>
+</component>
