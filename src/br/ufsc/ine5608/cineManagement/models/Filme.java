@@ -6,14 +6,18 @@ public class Filme implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String codigo;
+    private int codigo;
     private String nome;
     private String descricao;
     private String classificacaoIndicativa;
     private int duracaoMinutos;
     private String genero;
 
-    public Filme(String codigo, String nome, String descricao, String classificacaoIndicativa, int duracaoMinutos, String genero) {
+    public Filme() {
+
+    }
+
+    public Filme(int codigo, String nome, String descricao, String classificacaoIndicativa, int duracaoMinutos, String genero) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
@@ -22,11 +26,11 @@ public class Filme implements Serializable {
         this.genero = genero;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

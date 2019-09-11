@@ -20,7 +20,7 @@ public class MapeadorFilme {
     }
 
     public void put(Filme filme){
-        dadosFilmes.put(filme.getCodigo(), filme);
+        dadosFilmes.put(Integer.toString(filme.getCodigo()), filme);
         persist();
     }
 
@@ -57,8 +57,8 @@ public class MapeadorFilme {
         }
     }
 
-    public void remove(Filme filme){
-        dadosFilmes.remove(filme.getCodigo());
+    public void remove(String codigo){
+        dadosFilmes.remove(codigo);
         persist();
     }
 

@@ -24,6 +24,6 @@ public class ControladorPrincipal {
         if(opcao.contains("1"))
             ControladorUsuário.getInstancia().iniciaMenuUsuario();
         else if (opcao.contains("2"))
-            System.out.println("controla filme");
+            ControladorFilme.getInstancia().iniciaMenuFilme();
     }
 }
