@@ -4,9 +4,11 @@ import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.models.Filme;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class TelaCadastroNovoFilme extends JFrame {
     private JLabel titulo;
@@ -146,10 +148,10 @@ public class TelaCadastroNovoFilme extends JFrame {
                 ControladorFilme.getInstancia().iniciaMenuFilme();
             } else if (ae.getSource() == botaoOk) {
                 setVisible(false);
-                filme.setNome(textNome.getText());
+                filme.setNome(textNome.getText() + "  ");
                 filme.setDescricao(textDescricao.getText());
-                filme.setClassificacaoIndicativa(textClassificacao.getText());
-                filme.setGenero(textGenero.getText());
+                filme.setClassificacaoIndicativa(textClassificacao.getText() + "  ");
+                filme.setGenero(textGenero.getText() + "  ");
                 filme.setDuracaoMinutos(Integer.parseInt(textDuracao.getText()));
                 ControladorFilme.getInstancia().adicionaFilme(filme);
             }

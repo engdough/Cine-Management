@@ -56,9 +56,9 @@ public class ControladorFilme {
     }
 
     public int geraCodigo(){
-        int codigoNumerico = 0;
+        int codigoNumerico = 1;
         if(!mapeadorFilme.listaVazia()){
-            codigoNumerico = (mapeadorFilme.get(Integer.toString(mapeadorFilme.tamanhoLista()- 1)).getCodigo()) + 1;
+            codigoNumerico = (mapeadorFilme.get(Integer.toString(mapeadorFilme.tamanhoLista())).getCodigo()) + 1;
         }
         return codigoNumerico;
     }

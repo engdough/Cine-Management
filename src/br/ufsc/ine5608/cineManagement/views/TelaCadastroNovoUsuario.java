@@ -42,16 +42,16 @@ public class TelaCadastroNovoUsuario extends JFrame {
         tituloAux = new JLabel();
         textNome = new JTextField();
         labelCPF = new JLabel();
-        textCPF = new JTextField();
         labelDataNasc = new JLabel();
         labelEmail = new JLabel();
         textEmail = new JTextField();
         labelFone = new JLabel();
-        textFone = new JTextField();
         botaoOk = new JButton();
         botaoCancelar = new JButton();
         try {
+            textCPF = new JFormattedTextField(new MaskFormatter("###########"));
             textDataNac = new JFormattedTextField(new MaskFormatter("##/##/####"));
+            textFone = new JFormattedTextField(new MaskFormatter("(##)#########"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -158,8 +158,8 @@ public class TelaCadastroNovoUsuario extends JFrame {
             } else if (ae.getSource() == botaoOk) {
                 setVisible(false);
                 usuario.setCpf(textCPF.getText());
-                usuario.setNome(textNome.getText());
-                usuario.setEmail(textEmail.getText());
+                usuario.setNome(textNome.getText() + "  ");
+                usuario.setEmail(textEmail.getText() + "  ");
                 usuario.setTelefone(textFone.getText());
                 try {
                     Date date = formatter.parse(textDataNac.getText());

@@ -23,9 +23,11 @@ public class TelaAtualizarFilme extends JFrame {
     private JTextField textDuracao;
     private JButton botaoCancelar;
     private JButton botaoOk;
+    private int codigoFilme;
 
     public TelaAtualizarFilme(Filme filme) {
         super("Atualizar Filme");
+        this.codigoFilme = filme.getCodigo();
 
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
@@ -152,12 +154,13 @@ public class TelaAtualizarFilme extends JFrame {
                 ControladorFilme.getInstancia().iniciaMenuFilme();
             } else if (ae.getSource() == botaoOk) {
                 setVisible(false);
-                filme.setNome(textNome.getText());
+                filme.setCodigo(codigoFilme);
+                filme.setNome(textNome.getText() + "  ");
                 filme.setDescricao(textDescricao.getText());
-                filme.setClassificacaoIndicativa(textClassificacao.getText());
-                filme.setGenero(textGenero.getText());
+                filme.setClassificacaoIndicativa(textClassificacao.getText() + "  ");
+                filme.setGenero(textGenero.getText() + "  ");
                 filme.setDuracaoMinutos(Integer.parseInt(textDuracao.getText()));
-                ControladorFilme.getInstancia().adicionaFilme(filme);
+                ControladorFilme.getInstancia().atualizaInfoFilme(filme);
             }
         }
     }

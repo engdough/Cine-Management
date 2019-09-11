@@ -34,7 +34,6 @@ public class TelaAtualizarUsuario extends JFrame {
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String data = dateFormat.format(usuario.getDataNascimento());
-        System.out.println(data);
 
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
@@ -46,16 +45,16 @@ public class TelaAtualizarUsuario extends JFrame {
         tituloAux = new JLabel();
         textNome = new JTextField();
         labelCPF = new JLabel();
-        textCPF = new JTextField();
         labelDataNasc = new JLabel();
         labelEmail = new JLabel();
         textEmail = new JTextField();
         labelFone = new JLabel();
-        textFone = new JTextField();
         botaoOk = new JButton();
         botaoCancelar = new JButton();
         try {
+            textCPF = new JFormattedTextField(new MaskFormatter("###########"));
             textDataNac = new JFormattedTextField(new MaskFormatter("##/##/####"));
+            textFone = new JFormattedTextField(new MaskFormatter("(##)#########"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -167,9 +166,9 @@ public class TelaAtualizarUsuario extends JFrame {
             } else if (ae.getSource() == botaoOk) {
                 setVisible(false);
                 usuario.setCpf(textCPF.getText());
-                usuario.setNome(textNome.getText());
-                usuario.setEmail(textEmail.getText());
-                usuario.setTelefone(textFone.getText());
+                usuario.setNome(textNome.getText() + "  ");
+                usuario.setEmail(textEmail.getText() + "  ");
+                usuario.setTelefone(textFone.getText() + "  ");
                 try {
                     Date date = formatter.parse(textDataNac.getText());
                     usuario.setDataNascimento(date);
