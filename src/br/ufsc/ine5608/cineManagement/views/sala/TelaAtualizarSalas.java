@@ -9,12 +9,12 @@ package br.ufsc.ine5608.cineManagement.views.sala;
  *
  * @author erico
  */
-public class TelaCadastroSalas extends javax.swing.JFrame {
+public class TelaAtualizarSalas extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCadastroSalas
      */
-    public TelaCadastroSalas() {
+    public TelaAtualizarSalas() {
         initComponents();
     }
 
@@ -45,7 +45,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Cadastro de salas");
+        jLabel1.setText("Atualizar salas");
 
         jLabel3.setText("Nome da sala:");
 
@@ -69,7 +69,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
         });
         jSplitPane1.setLeftComponent(jButton3);
 
-        jButton2.setText("Cadastrar");
+        jButton2.setText("Atualizar");
         jSplitPane1.setRightComponent(jButton2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -84,7 +84,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jComboBox2, 0, 0, Short.MAX_VALUE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
                             .addComponent(jTextField2)
@@ -96,11 +96,11 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(185, 185, 185))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
+                .addGap(211, 211, 211)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
+                .addContainerGap(214, Short.MAX_VALUE)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(223, 223, 223))
         );
@@ -169,20 +169,21 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroSalas().setVisible(true);
+                new TelaAtualizarSalas().setVisible(true);
             }
         });
     }
