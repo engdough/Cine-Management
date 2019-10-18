@@ -2,6 +2,7 @@ package br.ufsc.ine5608.cineManagement.controladores;
 
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorUsuario;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
+import br.ufsc.ine5608.cineManagement.views.*;
 import br.ufsc.ine5608.cineManagement.views.usuario.TelaCadastroNovoUsuario;
 import br.ufsc.ine5608.cineManagement.views.usuario.TelaUsuario;
 
