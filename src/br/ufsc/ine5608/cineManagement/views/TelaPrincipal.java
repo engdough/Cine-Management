@@ -41,7 +41,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 450));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 450));
         setLocationRelativeTo(null);
