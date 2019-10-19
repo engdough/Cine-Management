@@ -9,12 +9,12 @@ package br.ufsc.ine5608.cineManagement.views.sessao;
  *
  * @author erico
  */
-public class TelaAtualizaSessão extends javax.swing.JFrame {
+public class TelaCadastroSessao extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCadastroSessão
      */
-    public TelaAtualizaSessão() {
+    public TelaCadastroSessao() {
         initComponents();
     }
 
@@ -42,7 +42,7 @@ public class TelaAtualizaSessão extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Atualizar Sessão");
+        jLabel1.setText("Cadastro de Sessão");
 
         jLabel2.setText("Filme:");
 
@@ -55,7 +55,7 @@ public class TelaAtualizaSessão extends javax.swing.JFrame {
         jButton1.setText("Cancelar");
         jSplitPane1.setLeftComponent(jButton1);
 
-        jButton2.setText("Atualizar");
+        jButton2.setText("Cadastrar");
         jSplitPane1.setRightComponent(jButton2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,7 +86,7 @@ public class TelaAtualizaSessão extends javax.swing.JFrame {
                         .addGap(215, 215, 215)
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
+                        .addGap(186, 186, 186)
                         .addComponent(jLabel1)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -143,21 +143,27 @@ public class TelaAtualizaSessão extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaSessão.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaSessão.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaSessão.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaSessão.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroSessao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAtualizaSessão().setVisible(true);
+                new TelaCadastroSessao().setVisible(true);
             }
         });
     }
