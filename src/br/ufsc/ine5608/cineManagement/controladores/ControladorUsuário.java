@@ -3,13 +3,13 @@ package br.ufsc.ine5608.cineManagement.controladores;
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorUsuario;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
 import br.ufsc.ine5608.cineManagement.views.*;
-import br.ufsc.ine5608.cineManagement.views.usuario.TelaCadastroNovoUsuario;
-import br.ufsc.ine5608.cineManagement.views.usuario.TelaUsuario;
+import br.ufsc.ine5608.cineManagement.views.usuario.*;
+
+import java.util.Date;
 
 public class ControladorUsuário {
 
     private static ControladorUsuário instancia;
-    private TelaUsuario telaUsuario = new TelaUsuario();
     private static MapeadorUsuario mapeadorUsuario;
 
     public ControladorUsuário(){
@@ -23,45 +23,118 @@ public class ControladorUsuário {
     }
 
     public void iniciaMenuUsuario() {
-        telaUsuario.setVisible(true);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaUsuario().setVisible(true);
+            }
+        });
     }
 
-    public void executaMenuAdocao(String opcao) {
-        if (opcao.contains("1"))
-            cadastroNovoUsuario();
-        else if (opcao.contains("2"))
-            telaAtualizaUsuario();
-        else if (opcao.contains("3"))
-            removerUsuario();
-        else if (opcao.contains("4"))
-            buscaUsuario();
+    public void executaMenuUsuario(String opcao) {
+        if (opcao.contains("1")){
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(TelaCadastroNovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(TelaCadastroNovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(TelaCadastroNovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(TelaCadastroNovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaCadastroNovoUsuario().setVisible(true);
+                }
+            });
+        }
+        else if (opcao.contains("2")){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaEscolherUsuarioAtualizar().setVisible(true);
+                }
+            });
+        }
+        else if (opcao.contains("3")) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaExcluirUsuario().setVisible(true);
+                }
+            });
+        }
+        else if (opcao.contains("4")) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaBuscarUsuario().setVisible(true);
+                }
+            });
+        }
         else if (opcao.contains("5"))
-            listarUsuarios();
+            new TelaListaUsuarios(mapeadorUsuario.getList());
         else if (opcao.contains("6"))
             ControladorPrincipal.getInstancia().iniciaSistema();
-    }
-
-    public void buscaUsuario(){
-        new TelaBuscaUsuário();
     }
 
     public void exibirInfoUsuario(String cpf){
         new TelaExibeInfoUsuario(mapeadorUsuario.get(cpf));
     }
 
-    public void cadastroNovoUsuario() {
-        new TelaCadastroNovoUsuario();
-    }
-
-    public void telaAtualizaUsuario() {
-        new TelaEscolherUsuarioAtualizar();
-    }
-
     public void atualizaUsuario(String cpf) {
-        new TelaAtualizarUsuario(mapeadorUsuario.get(cpf));
+        Usuario usuario = mapeadorUsuario.get(cpf);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaAtualizaUsuario(usuario.getCpf(), usuario.getDataNascimento(), usuario.getTelefone(), usuario.getNome(), usuario.getEmail()).setVisible(true);
+            }
+        });
     }
 
-    public void adicionaUsuario(Usuario usuario) {
+    public void adicionaUsuario(String CPF, Date dataNasc, String telefone, String nome, String email) {
+        Usuario usuario = new Usuario();
+        usuario.setCpf(CPF);
+        usuario.setDataNascimento(dataNasc);
+        usuario.setTelefone(telefone);
+        usuario.setNome(nome);
+        usuario.setEmail(email);
         mapeadorUsuario.put(usuario);
         iniciaMenuUsuario();
     }
@@ -71,15 +144,13 @@ public class ControladorUsuário {
         iniciaMenuUsuario();
     }
 
-    public void listarUsuarios() {
-        new TelaListaUsuarios(mapeadorUsuario.getList());
-    }
-
-    public void removerUsuario() {
-        new TelaExcluirUsuario();
-    }
-
-    public void atualizaInfoUsuario(Usuario usuario) {
+    public void atualizaInfoUsuario(String CPF, Date dataNasc, String telefone, String nome, String email) {
+        Usuario usuario = new Usuario();
+        usuario.setCpf(CPF);
+        usuario.setDataNascimento(dataNasc);
+        usuario.setTelefone(telefone);
+        usuario.setNome(nome);
+        usuario.setEmail(email);
         mapeadorUsuario.put(usuario);
         iniciaMenuUsuario();
     }

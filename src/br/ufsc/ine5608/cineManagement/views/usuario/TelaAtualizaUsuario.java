@@ -5,6 +5,15 @@
  */
 package br.ufsc.ine5608.cineManagement.views.usuario;
 
+import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author erico
@@ -14,8 +23,8 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroNovoUsuario2
      */
-    public TelaAtualizaUsuario() {
-        initComponents();
+    public TelaAtualizaUsuario(String CPF, Date dataNasc, String telefone, String nome, String email) {
+        initComponents(CPF, dataNasc, telefone, nome, email);
     }
 
     /**
@@ -25,7 +34,7 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String CPF, Date dataNasc, String telefone, String nome, String email) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -44,6 +53,11 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(true);
+        setSize(new java.awt.Dimension(600, 450));
+        setLocationRelativeTo(null);
+
+        GerenciadorBotoes btManager = new GerenciadorBotoes();
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("Atualizar Usuário");
@@ -57,11 +71,6 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Data de Nascimento:");
 
@@ -84,20 +93,20 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         jSplitPane1.setDividerSize(0);
 
         jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(btManager);
         jSplitPane1.setLeftComponent(jButton1);
 
         jButton2.setText("Atualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(btManager);
         jSplitPane1.setRightComponent(jButton2);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String data = dateFormat.format(dataNasc);
+        jTextField1.setText(nome);
+        jTextField2.setText(email);
+        jFormattedTextField1.setText(CPF);
+        jFormattedTextField2.setText(data);
+        jFormattedTextField3.setText(telefone);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,56 +191,31 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private class GerenciadorBotoes implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            if (ae.getSource() == jButton1){
+                setVisible(false);
+                ControladorUsuário.getInstancia().iniciaMenuUsuario();
+            } else if (ae.getSource() == jButton2) {
+                setVisible(false);
+                String CPF = jFormattedTextField1.getText();
+                Date dataNasc = null;
+                String telefone = jFormattedTextField3.getText();
+                String nome = jTextField1.getText();
+                String email = jTextField2.getText();
+                try {
+                    Date date = formatter.parse(jFormattedTextField2.getText());
+                    dataNasc = date;
+                } catch (ParseException e){
+                    e.printStackTrace();
                 }
+                ControladorUsuário.getInstancia().atualizaInfoUsuario(CPF, dataNasc, telefone, nome, email);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaAtualizaUsuario().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

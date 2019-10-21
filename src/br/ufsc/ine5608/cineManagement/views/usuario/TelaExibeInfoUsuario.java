@@ -1,4 +1,4 @@
-package br.ufsc.ine5608.cineManagement.views;
+package br.ufsc.ine5608.cineManagement.views.usuario;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
