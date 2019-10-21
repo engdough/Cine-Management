@@ -1,4 +1,4 @@
-package br.ufsc.ine5608.cineManagement.views;
+package br.ufsc.ine5608.cineManagement.views.filme;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.models.Filme;
