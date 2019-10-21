@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/erico/Documents/NetBeansProjects/Cine-Management/src/br/ufsc/ine5608/cineManagement/views/ingresso/TelaVenderIngresso.java</file>
+            <file>file:/C:/Users/erico/Documents/NetBeansProjects/Cine-Management/src/br/ufsc/ine5608/cineManagement/views/filme/TelaCadastraFilme.java</file>
+            <file>file:/C:/Users/erico/Documents/NetBeansProjects/Cine-Management/src/br/ufsc/ine5608/cineManagement/views/bomboniere/TelaCadastroProdutoBomboniere.java</file>
+            <file>file:/C:/Users/erico/Documents/NetBeansProjects/Cine-Management/src/br/ufsc/ine5608/cineManagement/views/usuario/TelaCadastroNovoUsuario.java</file>
+            <file>file:/C:/Users/erico/Documents/NetBeansProjects/Cine-Management/src/br/ufsc/ine5608/cineManagement/views/sessao/TelaCadastroSessao.java</file>
         </group>
     </open-files>
 </project-private>
