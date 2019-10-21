@@ -45,5 +45,11 @@ public class ControladorPrincipal {
             ControladorUsuário.getInstancia().iniciaMenuUsuario();
         else if (opcao.contains("2"))
             ControladorFilme.getInstancia().iniciaMenuFilme();
+        else if (opcao.contains("3"))
+            ControladorBomboniere.getInstancia().iniciaMenuBomboniere();
+        else if (opcao.contains("4"))
+            ControladorSala.getInstancia().iniciaMenuSala();
+        else if (opcao.contains("5"))
+            ControladorSessao.getInstancia().iniciaMenuSessao();
     }
 }

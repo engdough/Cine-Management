@@ -5,6 +5,9 @@
  */
 package br.ufsc.ine5608.cineManagement.views.sala;
 
+import br.ufsc.ine5608.cineManagement.controladores.ControladorSala;
+import br.ufsc.ine5608.cineManagement.enums.TipoSala;
+
 /**
  *
  * @author erico
@@ -14,8 +17,8 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroSalas
      */
-    public TelaAtualizarSalas() {
-        initComponents();
+    public TelaAtualizarSalas(String nomeSala, String capacidade, boolean estado, TipoSala tipo) {
+        initComponents(nomeSala, capacidade, estado, tipo);
     }
 
     /**
@@ -25,7 +28,7 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String nomeSala, String capacidade, boolean estado, TipoSala tipo) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -43,6 +46,8 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setSize(new java.awt.Dimension(600, 450));
+        setLocationRelativeTo(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Atualizar salas");
@@ -71,6 +76,22 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
 
         jButton2.setText("Atualizar");
         jSplitPane1.setRightComponent(jButton2);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setText(capacidade);
+        jTextField3.setText(nomeSala);
+        if (estado == true)
+            jComboBox2.setSelectedIndex(0);
+        else
+            jComboBox2.setSelectedIndex(1);
+        if (tipo.equals(TipoSala.TIPO_NORMAL))
+            jComboBox1.setSelectedIndex(0);
+        else
+            jComboBox1.setSelectedIndex(1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,44 +170,18 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        ControladorSala.getInstancia().iniciaMenuSala();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaAtualizarSalas().setVisible(true);
-            }
-        });
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        setVisible(false);
+        String nome = jTextField3.getText();
+        String capacidade = jTextField2.getText();
+        int tipoSala = jComboBox1.getSelectedIndex();
+        int estadoSala = jComboBox2.getSelectedIndex();
+        ControladorSala.getInstancia().salvaSalaAtualizada(nome, capacidade, estadoSala, tipoSala);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

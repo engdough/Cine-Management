@@ -1,26 +1,26 @@
 package br.ufsc.ine5608.cineManagement.mapeadores;
 
-import br.ufsc.ine5608.cineManagement.models.ProdutoBomboniere;
+import br.ufsc.ine5608.cineManagement.models.SalaCinema;
+import br.ufsc.ine5608.cineManagement.models.Sessao;
 
 import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class MapeadorBomboniere {
+public class MapeadorSessao {
+    private HashMap<String, Sessao> dadosSessao = new HashMap<>();
+    private final String filename = "sessao.dados";
 
-    private HashMap<String, ProdutoBomboniere> dadosBomboniere = new HashMap<>();
-    private final String filename = "bomboniere.dados";
-
-    public MapeadorBomboniere(){
+    public MapeadorSessao(){
         load();
     }
 
-    public ProdutoBomboniere get(String codigoBarras){
-        return dadosBomboniere.get(codigoBarras);
+    public Sessao get(String codigo){
+        return dadosSessao.get(codigo);
     }
 
-    public void put(ProdutoBomboniere produto){
-        dadosBomboniere.put(produto.getCodigoBarra(), produto);
+    public void put(Sessao sessao){
+        dadosSessao.put(sessao.getCodigo(), sessao);
         persist();
     }
 
@@ -28,7 +28,7 @@ public class MapeadorBomboniere {
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
             ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-            objOut.writeObject(dadosBomboniere);
+            objOut.writeObject(dadosSessao);
             objOut.flush();
             fileOut.flush();
             objOut.close();
@@ -44,7 +44,7 @@ public class MapeadorBomboniere {
         try {
             FileInputStream fileOut = new FileInputStream(filename);
             ObjectInputStream objIn = new ObjectInputStream(fileOut);
-            this.dadosBomboniere = (HashMap<String, ProdutoBomboniere>) objIn.readObject();
+            this.dadosSessao = (HashMap<String, Sessao>) objIn.readObject();
             objIn.close();
             fileOut.close();
         } catch (ClassNotFoundException e){
@@ -58,19 +58,19 @@ public class MapeadorBomboniere {
     }
 
     public void remove(String codigo){
-        dadosBomboniere.remove(codigo);
+        dadosSessao.remove(codigo);
         persist();
     }
 
-    public Collection<ProdutoBomboniere> getList() {
-        return dadosBomboniere.values();
+    public Collection<Sessao> getList() {
+        return dadosSessao.values();
     }
 
     public boolean listaVazia() {
-        return dadosBomboniere.isEmpty();
+        return dadosSessao.isEmpty();
     }
 
     public int tamanhoLista() {
-        return dadosBomboniere.size();
+        return dadosSessao.size();
     }
 }

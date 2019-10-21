@@ -5,6 +5,7 @@
  */
 package br.ufsc.ine5608.cineManagement.views.filme;
 
+import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.views.usuario.*;
 
 /**
@@ -12,12 +13,14 @@ import br.ufsc.ine5608.cineManagement.views.usuario.*;
  * @author erico
  */
 public class TelaAtualizaFilme extends javax.swing.JFrame {
+    private String codigo;
 
     /**
      * Creates new form TelaCadastroNovoUsuario2
      */
-    public TelaAtualizaFilme() {
-        initComponents();
+    public TelaAtualizaFilme(String codigo, String nome, String descricao, String classificacao, String genero, int duracao) {
+        this.codigo = codigo;
+        initComponents(codigo, nome, descricao, classificacao, genero, duracao);
     }
 
     /**
@@ -27,7 +30,7 @@ public class TelaAtualizaFilme extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String codigo, String nome, String descricao, String classificacao, String genero, int duracao) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -46,26 +49,24 @@ public class TelaAtualizaFilme extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(600, 450));
+        setLocationRelativeTo(null);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("Atualizar Filme");
 
         jLabel2.setText("Nome:");
 
-        jLabel3.setText("Classificação indicativa:");
+        jLabel3.setText("Duração (Em minutos):");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
 
-        jLabel1.setText("Duração (Em minutos):");
+        jLabel1.setText("Classificação indicativa:");
 
         jLabel4.setText("Descrição:");
 
@@ -83,6 +84,17 @@ public class TelaAtualizaFilme extends javax.swing.JFrame {
 
         jButton2.setText("Atualizar");
         jSplitPane1.setRightComponent(jButton2);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField1.setText(Integer.toString(duracao));
+        jTextField1.setText(nome);
+        jTextField2.setText(descricao);
+        jTextField3.setText(genero);
+        jTextField4.setText(classificacao);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,54 +174,19 @@ public class TelaAtualizaFilme extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        ControladorFilme.getInstancia().iniciaMenuFilme();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        setVisible(false);
+        String nome = jTextField1.getText();
+        String descricao = jTextField2.getText();
+        String classificacao = jTextField4.getText();
+        String genero = jTextField3.getText();
+        int duracao = Integer.parseInt(jFormattedTextField1.getText());
+        ControladorFilme.getInstancia().atualizaInfoFilme(this.codigo, nome, descricao, classificacao, genero, duracao);
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaFilme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaAtualizaFilme().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -12,11 +12,16 @@ public class ProdutoBomboniere implements Serializable {
     private int estoque;
     private float preco;
 
-    public ProdutoBomboniere(String codigoBarra, String nome, String descricao) {
+    public ProdutoBomboniere(String codigoBarra, String nome, String descricao, float preco) {
         this.codigoBarra = codigoBarra;
         this.nome = nome;
         this.descricao = descricao;
         this.estoque = 0;
+        this.preco = preco;
+    }
+
+    public ProdutoBomboniere() {
+
     }
 
     public String getCodigoBarra() {

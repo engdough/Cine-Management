@@ -58,8 +58,8 @@ public class MapeadorSala {
         }
     }
 
-    public void remove(SalaCinema sala){
-        dadosSala.remove(sala.getNome());
+    public void remove(String sala){
+        dadosSala.remove(sala);
         persist();
     }
 

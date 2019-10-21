@@ -138,6 +138,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             } else if (ae.getSource() == jButton3){
                 setVisible(false);
                 ControladorPrincipal.getInstancia().controlaMenu("2");
+            } else if (ae.getSource() == jButton6) {
+                setVisible(false);
+                ControladorPrincipal.getInstancia().controlaMenu("3");
+            } else if (ae.getSource() == jButton5) {
+                setVisible(false);
+                ControladorPrincipal.getInstancia().controlaMenu("4");
+            } else if (ae.getSource() == jButton4) {
+                setVisible(false);
+                ControladorPrincipal.getInstancia().controlaMenu("5");
             }
         }
     }

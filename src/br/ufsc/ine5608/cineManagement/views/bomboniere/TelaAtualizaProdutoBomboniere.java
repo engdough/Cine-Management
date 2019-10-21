@@ -5,17 +5,23 @@
  */
 package br.ufsc.ine5608.cineManagement.views.bomboniere;
 
+import br.ufsc.ine5608.cineManagement.controladores.ControladorBomboniere;
+
+import javax.swing.*;
+
 /**
  *
  * @author erico
  */
 public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
+    private String codigo;
 
     /**
      * Creates new form TelaCadastraProdutoBomboniere
      */
-    public TelaAtualizaProdutoBomboniere() {
-        initComponents();
+    public TelaAtualizaProdutoBomboniere(String nome,String descricao, int estoque, Float preco, String codigo) {
+        this.codigo = codigo;
+        initComponents(nome, descricao, estoque, preco);
     }
 
     /**
@@ -25,7 +31,7 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String nome,String descricao, int estoque, Float preco) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -44,6 +50,9 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(600, 450));
+        setLocationRelativeTo(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Atualizar produto da Bombonière");
@@ -54,9 +63,19 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
 
         jButton3.setText("Cadastrar");
         jSplitPane1.setRightComponent(jButton3);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancelar");
         jSplitPane1.setLeftComponent(jButton4);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descrição:");
 
@@ -65,6 +84,12 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
         jLabel5.setText("Preço:");
 
         jLabel6.setText("Código de barras");
+
+        jTextField1.setText(nome);
+        jTextField2.setText(descricao);
+        jTextField3.setText(Integer.toString(estoque));
+        jTextField4.setText(Float.toString(preco));
+        jTextField5.setText(codigo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,42 +172,19 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaProdutoBomboniere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaProdutoBomboniere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaProdutoBomboniere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAtualizaProdutoBomboniere.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        String nome = jTextField1.getText();
+        String descricao = jTextField2.getText();
+        String estoque = jTextField3.getText();
+        String preco = jTextField4.getText();
+        String codigo = jTextField5.getText();
+        ControladorBomboniere.getInstancia().atualizaInfoProduto(nome, descricao, estoque, preco, codigo);
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaAtualizaProdutoBomboniere().setVisible(true);
-            }
-        });
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        ControladorBomboniere.getInstancia().iniciaMenuBomboniere();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
