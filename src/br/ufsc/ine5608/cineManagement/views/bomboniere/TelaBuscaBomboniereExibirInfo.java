@@ -9,6 +9,8 @@ import br.ufsc.ine5608.cineManagement.controladores.ControladorBomboniere;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.views.usuario.*;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -119,8 +121,12 @@ public class TelaBuscaBomboniereExibirInfo extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);
-        ControladorBomboniere.getInstancia().exibirInfoBomboniere(jTextField1.getText());
+        if (ControladorBomboniere.getInstancia().verificacodigo(jTextField1.getText())) {
+            setVisible(false);
+            ControladorBomboniere.getInstancia().exibirInfoBomboniere(jTextField1.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Código não encontrado!");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

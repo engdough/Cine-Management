@@ -112,7 +112,7 @@ public class ControladorBomboniere {
         List<Float> precos = new ArrayList<>();
 
         produtos.stream().forEach(produto -> {
-            codigos.add(produto.getNome());
+            codigos.add(produto.getCodigoBarra());
             nomes.add(produto.getNome());
             estoque.add(produto.getEstoque());
             precos.add(produto.getPreco());
@@ -123,5 +123,15 @@ public class ControladorBomboniere {
                 new TelaListaProdutoBomboniere(codigos, nomes, estoque, precos).setVisible(true);
             }
         });
+    }
+
+    public boolean verificacodigo(String codigo){
+        Collection<ProdutoBomboniere> produtos = mapeadorBomboniere.getList();
+        for (ProdutoBomboniere produto : produtos) {
+            if (produto.getCodigoBarra().equals(codigo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

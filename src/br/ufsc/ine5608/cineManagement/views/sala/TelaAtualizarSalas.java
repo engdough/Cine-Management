@@ -8,16 +8,20 @@ package br.ufsc.ine5608.cineManagement.views.sala;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSala;
 import br.ufsc.ine5608.cineManagement.enums.TipoSala;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
  */
 public class TelaAtualizarSalas extends javax.swing.JFrame {
+    private String nome;
 
     /**
      * Creates new form TelaCadastroSalas
      */
     public TelaAtualizarSalas(String nomeSala, String capacidade, boolean estado, TipoSala tipo) {
+        this.nome = nomeSala;
         initComponents(nomeSala, capacidade, estado, tipo);
     }
 
@@ -175,12 +179,22 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setVisible(false);
         String nome = jTextField3.getText();
         String capacidade = jTextField2.getText();
         int tipoSala = jComboBox1.getSelectedIndex();
         int estadoSala = jComboBox2.getSelectedIndex();
-        ControladorSala.getInstancia().salvaSalaAtualizada(nome, capacidade, estadoSala, tipoSala);
+        if (nome.equals("") || capacidade.equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        } else if (!capacidade.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo capacidade!");
+        }else {
+            if (this.nome.equals(nome) || !ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {
+                setVisible(false);
+                ControladorSala.getInstancia().salvaSalaAtualizada(nome, capacidade, estadoSala, tipoSala);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nome de sala já está sendo utilizado!");
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

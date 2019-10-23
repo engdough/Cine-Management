@@ -39,7 +39,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JFormattedTextField();
         jSplitPane1 = new javax.swing.JSplitPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -75,6 +75,12 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        try {
+            jTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,15 +159,19 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         String filme = jTextField1.getText();
         String sala = jTextField2.getText();
         String horario = jTextField3.getText();
-        if (ControladorSessao.getInstancia().verificaFilme(filme)){
-            if (ControladorSessao.getInstancia().verificasala(sala)){
-                setVisible(false);
-                ControladorSessao.getInstancia().adicionaSessao(filme, sala, horario);
-            } else {
-                JOptionPane.showMessageDialog(null, "Sala não encontrada!");
-            }
+        if (horario.equals("  :  ")){
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         } else {
-            JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+            if (ControladorSessao.getInstancia().verificaFilme(filme)) {
+                if (ControladorSessao.getInstancia().verificasala(sala)) {
+                    setVisible(false);
+                    ControladorSessao.getInstancia().adicionaSessao(filme, sala, horario);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sala não encontrada!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+            }
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -177,6 +187,6 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JFormattedTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

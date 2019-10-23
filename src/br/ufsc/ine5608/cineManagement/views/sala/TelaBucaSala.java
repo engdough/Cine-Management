@@ -106,8 +106,12 @@ public class TelaBucaSala extends JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setVisible(false);
-        ControladorSala.getInstancia().atualizaSala(jTextField1.getText());
+        if (!ControladorSala.getInstancia().verificaNomeUtilizado(jTextField1.getText())){
+            JOptionPane.showMessageDialog(null, "Sala não encontrada!");
+        } else {
+            setVisible(false);
+            ControladorSala.getInstancia().atualizaSala(jTextField1.getText());
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,6 +7,8 @@ package br.ufsc.ine5608.cineManagement.views.bomboniere;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorBomboniere;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -161,13 +163,19 @@ public class TelaCadastroProdutoBomboniere extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);
         String nome = jTextField1.getText();
         String descricao = jTextField2.getText();
         String estoque = jTextField3.getText();
         String preco = jTextField4.getText();
         String codigo = jTextField5.getText();
-        ControladorBomboniere.getInstancia().addProduto(nome, descricao, estoque, preco, codigo);
+        if (nome.equals("") || descricao.equals("") || estoque.equals("") || preco.equals("") || codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        } else if (ControladorBomboniere.getInstancia().verificacodigo(codigo)){
+            JOptionPane.showMessageDialog(null, "Código já cadastrado!");
+        } else {
+            setVisible(false);
+            ControladorBomboniere.getInstancia().addProduto(nome, descricao, estoque, preco, codigo);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

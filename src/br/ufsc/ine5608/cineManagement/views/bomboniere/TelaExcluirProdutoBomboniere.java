@@ -8,6 +8,8 @@ package br.ufsc.ine5608.cineManagement.views.bomboniere;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorBomboniere;
 import br.ufsc.ine5608.cineManagement.views.usuario.*;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -115,8 +117,12 @@ public class TelaExcluirProdutoBomboniere extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);
-        ControladorBomboniere.getInstancia().excluirProduto(jTextField1.getText());
+        if (ControladorBomboniere.getInstancia().verificacodigo(jTextField1.getText())) {
+            setVisible(false);
+            ControladorBomboniere.getInstancia().excluirProduto(jTextField1.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Código não encontrado!");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

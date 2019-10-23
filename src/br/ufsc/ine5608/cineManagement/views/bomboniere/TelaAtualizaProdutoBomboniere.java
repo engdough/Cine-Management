@@ -173,13 +173,19 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);
         String nome = jTextField1.getText();
         String descricao = jTextField2.getText();
         String estoque = jTextField3.getText();
         String preco = jTextField4.getText();
         String codigo = jTextField5.getText();
-        ControladorBomboniere.getInstancia().atualizaInfoProduto(nome, descricao, estoque, preco, codigo);
+        if (nome.equals("") || descricao.equals("") || estoque.equals("") || preco.equals("") || codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        } else if (!this.codigo.equals(codigo) && ControladorBomboniere.getInstancia().verificacodigo(codigo)){
+            JOptionPane.showMessageDialog(null, "Código já cadastrado!");
+        } else {
+            setVisible(false);
+            ControladorBomboniere.getInstancia().atualizaInfoProduto(nome, descricao, estoque, preco, codigo);
+        }
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

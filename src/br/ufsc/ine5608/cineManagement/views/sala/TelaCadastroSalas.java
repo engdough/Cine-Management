@@ -7,6 +7,8 @@ package br.ufsc.ine5608.cineManagement.views.sala;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSala;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -35,7 +37,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JFormattedTextField();
         jTextField3 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -163,12 +165,22 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setVisible(false);
         String nome = jTextField3.getText();
         String capacidade = jTextField2.getText();
         int tipoSala = jComboBox1.getSelectedIndex();
         int estadoSala = jComboBox2.getSelectedIndex();
-        ControladorSala.getInstancia().cadastraNovaSala(nome, capacidade, tipoSala, estadoSala);
+        if (nome.equals("") || capacidade.equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        } else if (!capacidade.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo capacidade!");
+        }else {
+            if (ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {
+                JOptionPane.showMessageDialog(null, "Nome de sala já está sendo utilizado!");
+            } else {
+                setVisible(false);
+                ControladorSala.getInstancia().cadastraNovaSala(nome, capacidade, tipoSala, estadoSala);
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -183,7 +195,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JFormattedTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
