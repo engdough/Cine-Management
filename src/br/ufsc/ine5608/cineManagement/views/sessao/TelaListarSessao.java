@@ -3,6 +3,7 @@ package br.ufsc.ine5608.cineManagement.views.sessao;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSala;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSessao;
 import br.ufsc.ine5608.cineManagement.enums.TipoSala;
+import br.ufsc.ine5608.cineManagement.models.Filme;
 import br.ufsc.ine5608.cineManagement.models.SalaCinema;
 import br.ufsc.ine5608.cineManagement.models.Sessao;
 import br.ufsc.ine5608.cineManagement.views.sala.TelaListarSala;
@@ -15,6 +16,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class TelaListarSessao extends JFrame {
     private JLabel titulo;
@@ -23,7 +26,7 @@ public class TelaListarSessao extends JFrame {
     private JLabel colunaHora;
     private JButton botaoVoltar;
 
-    public TelaListarSessao(Collection<Sessao> sessoes) {
+    public TelaListarSessao(List<Filme> filmes, List<SalaCinema> salas, List<Date> horarios) {
 
         ArrayList<JLabel> arrayColunaFilme = new ArrayList<>();
         ArrayList<JLabel> arrayColunaSala = new ArrayList<>();
@@ -67,25 +70,25 @@ public class TelaListarSessao extends JFrame {
 
         int i = 0;
 
-        for (Sessao sessao: sessoes) {
+        for (Filme filme: filmes) {
             arrayColunaFilme.add(new JLabel());
             arrayColunaSala.add(new JLabel());
             arrayColunaHota.add(new JLabel());
 
-            arrayColunaFilme.get(i).setText(sessao.getFilme().getNome());
+            arrayColunaFilme.get(i).setText(filme.getNome());
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaFilme.get(i), g);
 
-            arrayColunaSala.get(i).setText(sessao.getSala().getNome());
+            arrayColunaSala.get(i).setText(salas.get(i).getNome());
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaSala.get(i), g);
 
             DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-            String hora = dateFormat.format(sessao.getHoraInicio());
+            String hora = dateFormat.format(horarios.get(i));
             arrayColunaHota.get(i).setText(hora);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;

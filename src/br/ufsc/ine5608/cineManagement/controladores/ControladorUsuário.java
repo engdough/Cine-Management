@@ -3,8 +3,13 @@ package br.ufsc.ine5608.cineManagement.controladores;
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorUsuario;
 import br.ufsc.ine5608.cineManagement.models.Usuario;
 import br.ufsc.ine5608.cineManagement.views.usuario.*;
+import sun.font.DelegatingShape;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class ControladorUsuário {
 
@@ -92,7 +97,7 @@ public class ControladorUsuário {
             });
         }
         else if (opcao.contains("5"))
-            new TelaListaUsuarios(mapeadorUsuario.getList());
+            listarUsuarios(mapeadorUsuario.getList());
         else if (opcao.contains("6"))
             ControladorPrincipal.getInstancia().iniciaSistema();
     }
@@ -151,6 +156,37 @@ public class ControladorUsuário {
         usuario.setNome(nome);
         usuario.setEmail(email);
         mapeadorUsuario.put(usuario);
-        iniciaMenuUsuario();
+    }
+
+    public void listarUsuarios(Collection<Usuario> usuarios) {
+        List<String> cpfs = new ArrayList<>();
+        List<String> nomes = new ArrayList<>();
+        List<Integer> pontos = new ArrayList<>();
+
+        usuarios.stream().forEach(usuario -> {
+            cpfs.add(usuario.getCpf());
+            nomes.add(usuario.getNome());
+            pontos.add(usuario.getPontos());
+        });
+
+        new TelaListaUsuarios(cpfs, nomes, pontos);
+    }
+
+    public boolean verificaCpf(String cpf) {
+        Collection<Usuario> usuarios = mapeadorUsuario.getList();
+        for (Usuario usuario: usuarios){
+            if (usuario.getCpf().equals(cpf))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean verificaEmail(String email) {
+        Collection<Usuario> usuarios = mapeadorUsuario.getList();
+        for (Usuario usuario: usuarios){
+            if (usuario.getEmail().equals(email))
+                return true;
+        }
+        return false;
     }
 }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class TelaListaFilmes extends JFrame {
     private JLabel titulo;
@@ -18,7 +19,7 @@ public class TelaListaFilmes extends JFrame {
     private JLabel colunaDuracao;
     private JButton botaoVoltar;
 
-    public TelaListaFilmes(Collection<Filme> filmes) {
+    public TelaListaFilmes(List<Integer> codigos, List<String> nomes, List<String> descricoes, List<String> classificacoes, List<String> generos, List<Integer> duracoes) {
         super("Filmes Cadastrados");
 
         ArrayList<JLabel> arrayColunaCodigo = new ArrayList<>();
@@ -63,24 +64,24 @@ public class TelaListaFilmes extends JFrame {
 
         int i = 0;
 
-        for (Filme filme: filmes) {
+        for (String nome: nomes) {
             arrayColunaCodigo.add(new JLabel());
             arrayColunaNome.add(new JLabel());
             arrayColunaDuracao.add(new JLabel());
 
-            arrayColunaCodigo.get(i).setText(Integer.toString(filme.getCodigo()));
+            arrayColunaCodigo.get(i).setText(Integer.toString(codigos.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaCodigo.get(i), g);
 
-            arrayColunaNome.get(i).setText(filme.getNome());
+            arrayColunaNome.get(i).setText(nome);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaNome.get(i), g);
 
-            arrayColunaDuracao.get(i).setText(filme.getGenero());
+            arrayColunaDuracao.get(i).setText(generos.get(i));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;
             g.gridy = i+2;

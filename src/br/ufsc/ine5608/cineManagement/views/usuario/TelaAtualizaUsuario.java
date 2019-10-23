@@ -5,8 +5,10 @@
  */
 package br.ufsc.ine5608.cineManagement.views.usuario;
 
+import br.ufsc.ine5608.cineManagement.controladores.ControladorBomboniere;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -19,11 +21,13 @@ import java.util.Date;
  * @author erico
  */
 public class TelaAtualizaUsuario extends javax.swing.JFrame {
+    public String cpf;
 
     /**
      * Creates new form TelaCadastroNovoUsuario2
      */
     public TelaAtualizaUsuario(String CPF, Date dataNasc, String telefone, String nome, String email) {
+        this.cpf = CPF;
         initComponents(CPF, dataNasc, telefone, nome, email);
     }
 
@@ -56,8 +60,6 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         setResizable(true);
         setSize(new java.awt.Dimension(600, 450));
         setLocationRelativeTo(null);
-
-        GerenciadorBotoes btManager = new GerenciadorBotoes();
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("Atualizar Usuário");
@@ -93,11 +95,19 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         jSplitPane1.setDividerSize(0);
 
         jButton1.setText("Cancelar");
-        jButton1.addActionListener(btManager);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jSplitPane1.setLeftComponent(jButton1);
 
         jButton2.setText("Atualizar");
-        jButton2.addActionListener(btManager);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jSplitPane1.setRightComponent(jButton2);
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -193,27 +203,37 @@ public class TelaAtualizaUsuario extends javax.swing.JFrame {
         pack();
     }
 
-    private class GerenciadorBotoes implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            if (ae.getSource() == jButton1){
-                setVisible(false);
-                ControladorUsuário.getInstancia().iniciaMenuUsuario();
-            } else if (ae.getSource() == jButton2) {
-                setVisible(false);
-                String CPF = jFormattedTextField1.getText();
-                Date dataNasc = null;
-                String telefone = jFormattedTextField3.getText();
-                String nome = jTextField1.getText();
-                String email = jTextField2.getText();
-                try {
-                    Date date = formatter.parse(jFormattedTextField2.getText());
-                    dataNasc = date;
-                } catch (ParseException e){
-                    e.printStackTrace();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        ControladorUsuário.getInstancia().iniciaMenuUsuario();
+    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String CPF = jFormattedTextField1.getText();
+        Date dataNasc = null;
+        String telefone = jFormattedTextField3.getText();
+        String nome = jTextField1.getText();
+        String email = jTextField2.getText();
+        if (CPF.equals("           ") || telefone.equals("(  )     -    ") || nome.equals("") || jFormattedTextField2.getText().equals("  /  /  ")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
+        } else {
+            try {
+                Date date = formatter.parse(jFormattedTextField2.getText());
+                dataNasc = date;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            ControladorUsuário.getInstancia().excluirUsuario(this.cpf);
+            if (!ControladorUsuário.getInstancia().verificaCpf(CPF)) {
+                if (!ControladorUsuário.getInstancia().verificaEmail(email)) {
+                    setVisible(false);
+                    ControladorUsuário.getInstancia().atualizaInfoUsuario(CPF, dataNasc, telefone, nome, email);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email já utilizado!");
                 }
-                ControladorUsuário.getInstancia().atualizaInfoUsuario(CPF, dataNasc, telefone, nome, email);
+            } else {
+                JOptionPane.showMessageDialog(null, "CPF já cadastrado!");
             }
         }
     }

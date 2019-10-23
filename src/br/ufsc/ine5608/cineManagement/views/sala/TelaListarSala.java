@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class TelaListarSala extends JFrame{
     private JLabel titulo;
@@ -22,7 +23,7 @@ public class TelaListarSala extends JFrame{
     private JLabel colunaTipo;
     private JButton botaoVoltar;
 
-    public TelaListarSala(Collection<SalaCinema> salas) {
+    public TelaListarSala(List<String> nomes, List<Integer> capacidades, List<Boolean> estados, List<TipoSala> tipos) {
 
         ArrayList<JLabel> arrayColunaNome = new ArrayList<>();
         ArrayList<JLabel> arrayColunaCapacidade = new ArrayList<>();
@@ -74,31 +75,31 @@ public class TelaListarSala extends JFrame{
 
         int i = 0;
 
-        for (SalaCinema sala: salas) {
+        for (String nome: nomes) {
             arrayColunaNome.add(new JLabel());
             arrayColunaCapacidade.add(new JLabel());
             arrayColunaEstado.add(new JLabel());
             arrayColunaTipo.add(new JLabel());
 
-            arrayColunaNome.get(i).setText(sala.getNome());
+            arrayColunaNome.get(i).setText(nome);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaNome.get(i), g);
 
-            arrayColunaCapacidade.get(i).setText(Integer.toString(sala.getCapacidade()));
+            arrayColunaCapacidade.get(i).setText(Integer.toString(capacidades.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaCapacidade.get(i), g);
 
-            arrayColunaEstado.get(i).setText(sala.isStatus() ? "Aberta" : "Em manutenção");
+            arrayColunaEstado.get(i).setText(estados.get(i) ? "Aberta" : "Em manutenção");
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;
             g.gridy = i+2;
             container.add(arrayColunaEstado.get(i), g);
 
-            arrayColunaTipo.get(i).setText(sala.getTipoSala().equals(TipoSala.TIPO_NORMAL) ? "Sala normal" : "Sala 3D");
+            arrayColunaTipo.get(i).setText(tipos.get(i).equals(TipoSala.TIPO_NORMAL) ? "Sala normal" : "Sala 3D");
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 3;
             g.gridy = i+2;

@@ -11,8 +11,10 @@ import br.ufsc.ine5608.cineManagement.views.sessao.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class ControladorSessao {
     private static ControladorSessao instancia;
@@ -48,7 +50,7 @@ public class ControladorSessao {
                 }
             });
         } else if (opcao.contains("2")){
-            new TelaListarSessao(mapeadorSessao.getList()).setVisible(true);
+            listarSessoes(mapeadorSessao.getList());
         } else if (opcao.contains("3")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -127,11 +129,55 @@ public class ControladorSessao {
         iniciaMenuSessao();
     }
 
+    public void listarSessoes(Collection<Sessao> sessoes) {
+        List<Filme> filmes = new ArrayList<>();
+        List<SalaCinema> salas = new ArrayList<>();
+        List<Date> horarios = new ArrayList<>();
+
+        sessoes.stream().forEach(sessao -> {
+            filmes.add(sessao.getFilme());
+            salas.add(sessao.getSala());
+            horarios.add(sessao.getHoraInicio());
+        });
+
+        new TelaListarSessao(filmes, salas, horarios).setVisible(true);
+    }
+
     public String geraCodigo(){
         int codigoNumerico = 1;
         if(!mapeadorSessao.listaVazia()){
             codigoNumerico = Integer.parseInt(mapeadorSessao.get(Integer.toString(mapeadorSessao.getList().size())).getCodigo()) + 1;
         }
         return Integer.toString(codigoNumerico);
+    }
+
+    public boolean verificaFilme(String filme){
+        Collection<Filme> filmes = mapeadorFilme.getList();
+        for (Filme response: filmes){
+            if (response.getNome().contains(filme)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificasala(String sala){
+        Collection<SalaCinema> salas = mapeadorSala.getList();
+        for (SalaCinema response: salas){
+            if (response.getNome().contains(sala)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificaCodigo(String codigo) {
+        Collection<Sessao> sessoes = mapeadorSessao.getList();
+        for (Sessao sessao: sessoes) {
+            if (sessao.getCodigo().equals(codigo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

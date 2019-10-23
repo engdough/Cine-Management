@@ -7,6 +7,7 @@ package br.ufsc.ine5608.cineManagement.views.usuario;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -119,8 +120,12 @@ public class TelaBuscarUsuario extends javax.swing.JFrame {
                 setVisible(false);
                 ControladorUsuário.getInstancia().iniciaMenuUsuario();
             } else if (ae.getSource() == jButton2){
-                setVisible(false);
-                ControladorUsuário.getInstancia().exibirInfoUsuario(jFormattedTextField1.getText());
+                if (!ControladorUsuário.getInstancia().verificaCpf(jFormattedTextField1.getText())) {
+                    JOptionPane.showMessageDialog(null, "CPF não encontrado!");
+                } else {
+                    setVisible(false);
+                    ControladorUsuário.getInstancia().exibirInfoUsuario(jFormattedTextField1.getText());
+                }
             }
         }
     }

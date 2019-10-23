@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class TelaListaProdutoBomboniere extends JFrame {
     private JLabel titulo;
@@ -21,7 +22,7 @@ public class TelaListaProdutoBomboniere extends JFrame {
     private JLabel colunaPreco;
     private JButton botaoVoltar;
 
-    public TelaListaProdutoBomboniere(Collection<ProdutoBomboniere> produtos) {
+    public TelaListaProdutoBomboniere(List<String> codigos, List<String> nomes, List<Integer> estoque, List<Float> precos) {
 
         ArrayList<JLabel> arrayColunaCodigo = new ArrayList<>();
         ArrayList<JLabel> arrayColunaNome = new ArrayList<>();
@@ -73,31 +74,31 @@ public class TelaListaProdutoBomboniere extends JFrame {
 
         int i = 0;
 
-        for (ProdutoBomboniere produto: produtos) {
+        for (String codigo: codigos) {
             arrayColunaCodigo.add(new JLabel());
             arrayColunaNome.add(new JLabel());
             arrayColunaEstoque.add(new JLabel());
             arrayColunaPreco.add(new JLabel());
 
-            arrayColunaCodigo.get(i).setText(produto.getCodigoBarra());
+            arrayColunaCodigo.get(i).setText(codigo);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaCodigo.get(i), g);
 
-            arrayColunaNome.get(i).setText(produto.getNome());
+            arrayColunaNome.get(i).setText(nomes.get(i));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaNome.get(i), g);
 
-            arrayColunaEstoque.get(i).setText(Integer.toString(produto.getEstoque()));
+            arrayColunaEstoque.get(i).setText(Integer.toString(estoque.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;
             g.gridy = i+2;
             container.add(arrayColunaEstoque.get(i), g);
 
-            arrayColunaPreco.get(i).setText(Float.toString(produto.getPreco()));
+            arrayColunaPreco.get(i).setText(Float.toString(precos.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 3;
             g.gridy = i+2;

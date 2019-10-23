@@ -8,6 +8,8 @@ package br.ufsc.ine5608.cineManagement.views.sessao;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorPrincipal;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSessao;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -148,11 +150,20 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        setVisible(false);
         String filme = jTextField1.getText();
         String sala = jTextField2.getText();
         String horario = jTextField3.getText();
-        ControladorSessao.getInstancia().adicionaSessao(filme, sala, horario);
+        if (ControladorSessao.getInstancia().verificaFilme(filme)){
+            if (ControladorSessao.getInstancia().verificasala(sala)){
+                setVisible(false);
+                ControladorSessao.getInstancia().adicionaSessao(filme, sala, horario);
+            } else {
+                JOptionPane.showMessageDialog(null, "Sala não encontrada!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

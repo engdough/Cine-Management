@@ -7,6 +7,7 @@ package br.ufsc.ine5608.cineManagement.views.usuario;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorUsuário;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -192,19 +193,32 @@ public class TelaCadastroNovoUsuario extends javax.swing.JFrame {
                 setVisible(false);
                 ControladorUsuário.getInstancia().iniciaMenuUsuario();
             } else if (ae.getSource() == jButton2) {
-                setVisible(false);
                 String CPF = jFormattedTextField1.getText();
                 Date dataNasc = null;
                 String telefone = jFormattedTextField3.getText();
                 String nome = jTextField1.getText();
                 String email = jTextField2.getText();
-                try {
-                    Date date = formatter.parse(jFormattedTextField2.getText());
-                    dataNasc = date;
-                } catch (ParseException e){
-                    e.printStackTrace();
+                if (CPF.equals("           ") || telefone.equals("(  )     -    ") || nome.equals("") || jFormattedTextField2.getText().equals("  /  /  ")) {
+                    JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!");
+                } else {
+                    try {
+                        Date date = formatter.parse(jFormattedTextField2.getText());
+                        dataNasc = date;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (!ControladorUsuário.getInstancia().verificaCpf(CPF)) {
+                        if (!ControladorUsuário.getInstancia().verificaEmail(email)) {
+                            setVisible(false);
+                            ControladorUsuário.getInstancia().adicionaUsuario(CPF, dataNasc, telefone, nome, email);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Email já utilizado!");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "CPF deve ser o mesmo já cadastrado!");
+                    }
                 }
-                ControladorUsuário.getInstancia().adicionaUsuario(CPF, dataNasc, telefone, nome, email);
             }
         }
     }

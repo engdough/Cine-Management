@@ -5,6 +5,11 @@ import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorSala;
 import br.ufsc.ine5608.cineManagement.models.SalaCinema;
 import br.ufsc.ine5608.cineManagement.views.sala.*;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class ControladorSala {
     private static ControladorSala instancia;
     private static MapeadorSala mapeadorSala;
@@ -63,7 +68,7 @@ public class ControladorSala {
                 }
             });
         } else if (opcao.contains("4")) {
-            new TelaListarSala(mapeadorSala.getList()).setVisible(true);
+            listarSalas(mapeadorSala.getList());
         }
     }
 
@@ -79,7 +84,12 @@ public class ControladorSala {
             sala.setTipoSala(TipoSala.TIPO_NORMAL);
         else
             sala.setTipoSala(TipoSala.TIPO_3D);
-        mapeadorSala.put(sala);
+
+        if (!verificaNomeUtilizado(nome)) {
+            mapeadorSala.put(sala);
+        } else {
+            JOptionPane.showMessageDialog(null,"Nome de sala já utilizado!");
+        }
         iniciaMenuSala();
     }
 
@@ -115,5 +125,31 @@ public class ControladorSala {
     public void excluirSala(String nome) {
         mapeadorSala.remove(nome);
         iniciaMenuSala();
+    }
+
+    public void listarSalas(Collection<SalaCinema> salas) {
+        List<String> nomes = new ArrayList<>();
+        List<Integer> capacidades = new ArrayList<>();
+        List<Boolean> estados = new ArrayList<>();
+        List<TipoSala> tipos = new ArrayList<>();
+
+        salas.stream().forEach(sala -> {
+            nomes.add(sala.getNome());
+            capacidades.add(sala.getCapacidade());
+            estados.add(sala.isStatus());
+            tipos.add(sala.getTipoSala());
+        });
+
+        new TelaListarSala(nomes, capacidades, estados, tipos).setVisible(true);
+    }
+
+    public boolean verificaNomeUtilizado(String nome) {
+        Collection<SalaCinema> salas = mapeadorSala.getList();
+        for (SalaCinema sala : salas) {
+            if (sala.getNome().equals(nome)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

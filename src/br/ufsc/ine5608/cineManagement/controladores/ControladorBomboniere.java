@@ -2,7 +2,13 @@ package br.ufsc.ine5608.cineManagement.controladores;
 
 import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorBomboniere;
 import br.ufsc.ine5608.cineManagement.models.ProdutoBomboniere;
+import br.ufsc.ine5608.cineManagement.models.Usuario;
 import br.ufsc.ine5608.cineManagement.views.bomboniere.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class ControladorBomboniere {
     private static ControladorBomboniere instancia;
@@ -52,11 +58,7 @@ public class ControladorBomboniere {
                 }
             });
         } else if (opcao.contains("5")) {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new TelaListaProdutoBomboniere(mapeadorBomboniere.getList()).setVisible(true);
-                }
-            });
+            listarProdutos(mapeadorBomboniere.getList());
         } else if (opcao.contains("6")) {
             ControladorPrincipal.getInstancia().iniciaSistema();
         }
@@ -101,5 +103,25 @@ public class ControladorBomboniere {
     public void exibirInfoBomboniere(String codigo) {
         ProdutoBomboniere produto = mapeadorBomboniere.get(codigo);
         new TelaExibeInfoBomboniere(produto.getCodigoBarra(), produto.getNome(), produto.getEstoque(), produto.getPreco());
+    }
+
+    public void listarProdutos(Collection<ProdutoBomboniere> produtos) {
+        List<String> codigos = new ArrayList<>();
+        List<String> nomes = new ArrayList<>();
+        List<Integer> estoque = new ArrayList<>();
+        List<Float> precos = new ArrayList<>();
+
+        produtos.stream().forEach(produto -> {
+            codigos.add(produto.getNome());
+            nomes.add(produto.getNome());
+            estoque.add(produto.getEstoque());
+            precos.add(produto.getPreco());
+        });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaListaProdutoBomboniere(codigos, nomes, estoque, precos).setVisible(true);
+            }
+        });
     }
 }

@@ -106,8 +106,12 @@ public class TelaBuscaSessão extends JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setVisible(false);
-        ControladorSessao.getInstancia().atualizaSessao(jTextField1.getText());
+        if (ControladorSessao.getInstancia().verificaCodigo(jTextField1.getText())) {
+            setVisible(false);
+            ControladorSessao.getInstancia().atualizaSessao(jTextField1.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Sessão não encontrada!");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

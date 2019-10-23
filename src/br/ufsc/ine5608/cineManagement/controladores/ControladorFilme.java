@@ -5,6 +5,10 @@ import br.ufsc.ine5608.cineManagement.models.Filme;
 import br.ufsc.ine5608.cineManagement.views.*;
 import br.ufsc.ine5608.cineManagement.views.filme.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class ControladorFilme {
     private static ControladorFilme instancia;
     private static MapeadorFilme mapeadorFilme;
@@ -68,7 +72,7 @@ public class ControladorFilme {
             });
         }
         else if (opcao.contains("5"))
-            listarFilmes();
+            listarFilmes(mapeadorFilme.getList());
         else if (opcao.contains("6"))
             ControladorPrincipal.getInstancia().iniciaSistema();
     }
@@ -112,10 +116,6 @@ public class ControladorFilme {
         iniciaMenuFilme();
     }
 
-    public void listarFilmes() {
-        new TelaListaFilmes(mapeadorFilme.getList());
-    }
-
     public void removerFilme() {
         new TelaExcluirFilme();
     }
@@ -130,5 +130,25 @@ public class ControladorFilme {
         filme.setDuracaoMinutos(duracao);
         mapeadorFilme.put(filme);
         iniciaMenuFilme();
+    }
+
+    public void listarFilmes(Collection<Filme> filmes){
+        List<Integer> codigos = new ArrayList<>();
+        List<String> nomes = new ArrayList<>();
+        List<String> descricoes = new ArrayList<>();
+        List<String> classificacoes = new ArrayList<>();
+        List<String> generos = new ArrayList<>();
+        List<Integer> duracoes = new ArrayList<>();
+
+        filmes.stream().forEach(filme -> {
+            codigos.add(filme.getCodigo());
+            nomes.add(filme.getNome());
+            descricoes.add(filme.getDescricao());
+            classificacoes.add(filme.getClassificacaoIndicativa());
+            generos.add(filme.getGenero());
+            duracoes.add(filme.getDuracaoMinutos());
+        });
+
+        new TelaListaFilmes(codigos, nomes, descricoes, classificacoes, generos, duracoes);
     }
 }

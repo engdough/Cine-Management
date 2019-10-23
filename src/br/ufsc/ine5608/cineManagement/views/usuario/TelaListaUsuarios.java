@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class TelaListaUsuarios extends JFrame {
     private JLabel titulo;
@@ -17,7 +18,7 @@ public class TelaListaUsuarios extends JFrame {
     private JLabel colunaPontos;
     private JButton botaoVoltar;
 
-    public TelaListaUsuarios(Collection<Usuario> usuarios) {
+    public TelaListaUsuarios(List<String> cpfs, List<String> nomes, List<Integer> pontos) {
         super("Usuários Cadastrados");
 
         ArrayList<JLabel> arrayColunaCpf = new ArrayList<>();
@@ -62,24 +63,24 @@ public class TelaListaUsuarios extends JFrame {
 
         int i = 0;
 
-        for (Usuario usuario: usuarios) {
+        for (String nome: nomes) {
             arrayColunaCpf.add(new JLabel());
             arrayColunaNome.add(new JLabel());
             arrayColunaPontos.add(new JLabel());
 
-            arrayColunaCpf.get(i).setText(usuario.getCpf());
+            arrayColunaCpf.get(i).setText(cpfs.get(i));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaCpf.get(i), g);
 
-            arrayColunaNome.get(i).setText(usuario.getNome());
+            arrayColunaNome.get(i).setText(nome);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaNome.get(i), g);
 
-            arrayColunaPontos.get(i).setText(Integer.toString(usuario.getPontos()));
+            arrayColunaPontos.get(i).setText(Integer.toString(pontos.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;
             g.gridy = i+2;
