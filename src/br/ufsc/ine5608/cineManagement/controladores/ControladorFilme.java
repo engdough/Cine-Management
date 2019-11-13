@@ -62,8 +62,6 @@ public class ControladorFilme {
                 }
             });
         }
-        else if (opcao.contains("3"))
-            removerFilme();
         else if (opcao.contains("4")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -105,19 +103,16 @@ public class ControladorFilme {
 
     public int geraCodigo(){
         int codigoNumerico = 1;
+        Filme[] filmes = mapeadorFilme.getList().toArray(new Filme[mapeadorFilme.tamanhoLista() - 1]);
         if(!mapeadorFilme.listaVazia()){
-            codigoNumerico = (mapeadorFilme.get(Integer.toString(mapeadorFilme.tamanhoLista())).getCodigo()) + 1;
+            codigoNumerico = filmes[filmes.length - 1].getCodigo() + 1;
         }
         return codigoNumerico;
     }
 
     public void excluirFilme(String codigo){
         mapeadorFilme.remove(codigo);
-        iniciaMenuFilme();
-    }
-
-    public void removerFilme() {
-        new TelaExcluirFilme();
+        listarFilmes(mapeadorFilme.getList());
     }
 
     public void atualizaInfoFilme(String codigo, String nome, String descricao, String classificacao, String genero, int duracao) {

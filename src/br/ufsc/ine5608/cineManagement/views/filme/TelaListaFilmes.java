@@ -25,6 +25,7 @@ public class TelaListaFilmes extends JFrame {
         ArrayList<JLabel> arrayColunaCodigo = new ArrayList<>();
         ArrayList<JLabel> arrayColunaNome = new ArrayList<>();
         ArrayList<JLabel> arrayColunaDuracao = new ArrayList<>();
+        ArrayList<JButton> arrayButtonDelete = new ArrayList<>();
 
         JPanel container = new JPanel();
         JScrollPane scrPane = new JScrollPane(container);
@@ -68,6 +69,7 @@ public class TelaListaFilmes extends JFrame {
             arrayColunaCodigo.add(new JLabel());
             arrayColunaNome.add(new JLabel());
             arrayColunaDuracao.add(new JLabel());
+            arrayButtonDelete.add(new JButton());
 
             arrayColunaCodigo.get(i).setText(Integer.toString(codigos.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
@@ -87,6 +89,20 @@ public class TelaListaFilmes extends JFrame {
             g.gridy = i+2;
             container.add(arrayColunaDuracao.get(i), g);
 
+            arrayButtonDelete.get(i).setText("Excluir");
+            g.fill = GridBagConstraints.HORIZONTAL;
+            g.gridx = 3;
+            g.gridy = i+2;
+            container.add(arrayButtonDelete.get(i), g);
+
+            int n = i;
+
+            arrayButtonDelete.get(i).addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonActionPerformed(evt, codigos.get(n));
+                }
+            });
+
             i++;
         }
 
@@ -105,6 +121,15 @@ public class TelaListaFilmes extends JFrame {
         setVisible(true);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void jButtonActionPerformed(java.awt.event.ActionEvent evt, int n) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object[] options = {"cancelar", "excluir"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir", "Confirmar exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (opcao == 1) {
+            setVisible(false);
+            ControladorFilme.getInstancia().excluirFilme(Integer.toString(n));
+        }
     }
 
     private class GerenciadorBotoes implements ActionListener {
