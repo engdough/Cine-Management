@@ -20,9 +20,9 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroSalas
      */
-    public TelaAtualizarSalas(String nomeSala, String capacidade, boolean estado, TipoSala tipo) {
+    public TelaAtualizarSalas(String nomeSala, String fileira, String cadeiraPorFileira, boolean estado, TipoSala tipo) {
         this.nome = nomeSala;
-        initComponents(nomeSala, capacidade, estado, tipo);
+        initComponents(nomeSala, fileira, cadeiraPorFileira, estado, tipo);
     }
 
     /**
@@ -32,7 +32,7 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String nomeSala, String capacidade, boolean estado, TipoSala tipo) {
+    private void initComponents(String nomeSala, String fileira, String cadeiraPorfileira, boolean estado, TipoSala tipo) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -88,7 +88,8 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setText(capacidade);
+        jTextField1.setText(cadeiraPorfileira);
+        jTextField2.setText(fileira);
         jTextField3.setText(nomeSala);
         if (estado == true)
             jComboBox2.setSelectedIndex(0);
@@ -192,22 +193,26 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = jTextField3.getText();
-        String capacidade = jTextField2.getText();
+        String fileira = jTextField2.getText();
+        String cadeiraPorFileira = jTextField1.getText();
         int tipoSala = jComboBox1.getSelectedIndex();
         int estadoSala = jComboBox2.getSelectedIndex();
-        if (nome.equals("") || capacidade.equals("")) {
+        if (nome.equals("") || fileira.equals("") || cadeiraPorFileira.equals("")) {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
-        } else if (!capacidade.matches("[0-9]+")) {
+        } else if (!fileira.matches("[0-9]+")) {
             JOptionPane.showMessageDialog(null, "Digite apenas números no campo capacidade!");
-        }else {
+        }else if (!cadeiraPorFileira.matches("[0-9]+")) {
             if (this.nome.equals(nome) || !ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {
                 setVisible(false);
-                ControladorSala.getInstancia().salvaSalaAtualizada(nome, capacidade, estadoSala, tipoSala);
+                ControladorSala.getInstancia().salvaSalaAtualizada(nome, fileira, cadeiraPorFileira, estadoSala, tipoSala);
             } else {
                 JOptionPane.showMessageDialog(null, "Nome de sala já está sendo utilizado!");
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+//    private String jTextField1() {
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

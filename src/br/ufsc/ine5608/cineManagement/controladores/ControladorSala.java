@@ -72,10 +72,11 @@ public class ControladorSala {
         }
     }
 
-    public void cadastraNovaSala(String nome, String capacidade, int tipoSala, int estadoSala) {
+    public void cadastraNovaSala(String nome, String fileiras, String cadeirasPorFileiras, int tipoSala, int estadoSala) {
         SalaCinema sala = new SalaCinema();
         sala.setNome(nome);
-        sala.setCapacidade(Integer.parseInt(capacidade));
+        sala.setFileiras(Integer.parseInt(fileiras));
+        sala.setCadeirasPorFileira(Integer.parseInt(cadeirasPorFileiras));
         if (estadoSala == 0)
             sala.setStatus(true);
         else
@@ -96,20 +97,22 @@ public class ControladorSala {
     public void atualizaSala(String nome) {
         SalaCinema sala = mapeadorSala.get(nome);
         String nomeSala = sala.getNome();
-        String capacidade = Integer.toString(sala.getCapacidade());
+        String fileiras = Integer.toString(sala.getFileiras());
+        String cadeirasPorFileira = Integer.toString(sala.getCadeirasPorFileira());
         boolean estado = sala.isStatus();
         TipoSala tipo = sala.getTipoSala();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAtualizarSalas(nomeSala, capacidade, estado, tipo).setVisible(true);
+                new TelaAtualizarSalas(nomeSala, fileiras, cadeirasPorFileira, estado, tipo).setVisible(true);
             }
         });
     }
 
-    public void salvaSalaAtualizada(String nomeSala, String capacidade, int estado, int tipo) {
+    public void salvaSalaAtualizada(String nomeSala, String fileira, String cadeiraPorFileira, int estado, int tipo) {
         SalaCinema sala = new SalaCinema();
         sala.setNome(nomeSala);
-        sala.setCapacidade(Integer.parseInt(capacidade));
+        sala.setFileiras(Integer.parseInt(fileira));
+        sala.setCadeirasPorFileira(Integer.parseInt(cadeiraPorFileira));
         if (estado == 0)
             sala.setStatus(true);
         else
@@ -129,18 +132,20 @@ public class ControladorSala {
 
     public void listarSalas(Collection<SalaCinema> salas) {
         List<String> nomes = new ArrayList<>();
-        List<Integer> capacidades = new ArrayList<>();
+        List<Integer> fileiras = new ArrayList<>();
+        List<Integer> cadeirasPorFileiras = new ArrayList<>();
         List<Boolean> estados = new ArrayList<>();
         List<TipoSala> tipos = new ArrayList<>();
 
         salas.stream().forEach(sala -> {
             nomes.add(sala.getNome());
-            capacidades.add(sala.getCapacidade());
+            fileiras.add(sala.getFileiras());
+            cadeirasPorFileiras.add(sala.getFileiras());
             estados.add(sala.isStatus());
             tipos.add(sala.getTipoSala());
         });
 
-        new TelaListarSala(nomes, capacidades, estados, tipos).setVisible(true);
+        new TelaListarSala(nomes, fileiras, cadeirasPorFileiras, estados, tipos).setVisible(true);
     }
 
     public boolean verificaNomeUtilizado(String nome) {

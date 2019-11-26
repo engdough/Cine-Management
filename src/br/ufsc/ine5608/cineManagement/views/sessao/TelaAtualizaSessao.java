@@ -156,23 +156,12 @@ public class TelaAtualizaSessao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String filme = jTextField1.getText();
-        String sala = jTextField2.getText();
-        String horaInicio = jTextField3.getText();
-        if (horaInicio.equals("  :  ")){
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
-        } else {
-            if (ControladorSessao.getInstancia().verificaFilme(filme)) {
-                if (ControladorSessao.getInstancia().verificasala(sala)) {
-                    setVisible(false);
-                    ControladorSessao.getInstancia().atualizaInfoSessao(filme, sala, horaInicio, codigo);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Sala não encontrada!");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
-            }
-        }
+        String filme = jComboBox1.getActionCommand();
+        String sala = jComboBox2.getActionCommand();
+        String horaInicio = jComboBox3.getActionCommand();
+        //setVisible(false);
+        //ControladorSessao.getInstancia().atualizaInfoSessao(filme, sala, horaInicio, codigo);
+        System.out.println(filme + sala + horaInicio);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

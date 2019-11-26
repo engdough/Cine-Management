@@ -23,7 +23,7 @@ public class TelaListarSala extends JFrame{
     private JLabel colunaTipo;
     private JButton botaoVoltar;
 
-    public TelaListarSala(List<String> nomes, List<Integer> capacidades, List<Boolean> estados, List<TipoSala> tipos) {
+    public TelaListarSala(List<String> nomes, List<Integer> fileiras, List<Integer> cadeirasPorFileira, List<Boolean> estados, List<TipoSala> tipos) {
 
         ArrayList<JLabel> arrayColunaNome = new ArrayList<>();
         ArrayList<JLabel> arrayColunaCapacidade = new ArrayList<>();
@@ -87,7 +87,7 @@ public class TelaListarSala extends JFrame{
             g.gridy = i+2;
             container.add(arrayColunaNome.get(i), g);
 
-            arrayColunaCapacidade.get(i).setText(Integer.toString(capacidades.get(i)));
+            arrayColunaCapacidade.get(i).setText(Integer.toString(fileiras.get(i) * cadeirasPorFileira.get(i)));
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;

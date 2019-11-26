@@ -9,19 +9,21 @@ public class SalaCinema implements Serializable {
     public static final long serialVersionUID = 1L;
 
     private String nome;
-    private int capacidade;
+    private int fileiras;
+    private int cadeirasPorFileira;
     private TipoSala tipoSala;
     private boolean status;
 
-    public SalaCinema(String nome, int capacidade, TipoSala tipoSala, boolean status) {
+
+    public SalaCinema(String nome, int fileiras, int cadeirasPorFileira, TipoSala tipoSala, boolean status) {
         this.nome = nome;
-        this.capacidade = capacidade;
+        this.fileiras = fileiras;
+        this.cadeirasPorFileira = cadeirasPorFileira;
         this.tipoSala = tipoSala;
         this.status = status;
     }
 
     public SalaCinema() {
-
     }
 
     public String getNome() {
@@ -32,12 +34,20 @@ public class SalaCinema implements Serializable {
         this.nome = nome;
     }
 
-    public int getCapacidade() {
-        return capacidade;
+    public int getFileiras() {
+        return fileiras;
     }
 
-    public void setCapacidade(int capacidade) {
-        this.capacidade = capacidade;
+    public void setFileiras(int fileiras) {
+        this.fileiras = fileiras;
+    }
+
+    public int getCadeirasPorFileira() {
+        return cadeirasPorFileira;
+    }
+
+    public void setCadeirasPorFileira(int cadeirasPorFileira) {
+        this.cadeirasPorFileira = cadeirasPorFileira;
     }
 
     public TipoSala getTipoSala() {

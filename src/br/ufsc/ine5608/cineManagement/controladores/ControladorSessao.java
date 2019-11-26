@@ -46,7 +46,25 @@ public class ControladorSessao {
         if (opcao.contains("1")){
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new TelaCadastroSessao().setVisible(true);
+                    Collection<Filme> filmes = mapeadorFilme.getList();
+                    String[] arrayFilmes = new String[filmes.size()];
+                    Collection<SalaCinema> salas = mapeadorSala.getList();
+                    String[] arraySala = new String[salas.size()];
+                    int i = 0;
+                    while (i < filmes.size()) {
+                        for (Filme filme: filmes) {
+                            arrayFilmes[i] = filme.getNome();
+                            i++;
+                        }
+                    }
+                    int j = 0;
+                    while (j < salas.size()) {
+                        for (SalaCinema sala : salas) {
+                            arraySala[j] = sala.getNome();
+                            j++;
+                        }
+                    }
+                    new TelaCadastroSessao(arrayFilmes, arraySala).setVisible(true);
                 }
             });
         } else if (opcao.contains("2")){

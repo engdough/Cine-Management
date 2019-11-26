@@ -178,19 +178,22 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = jTextField3.getText();
-        String capacidade = jTextField2.getText();
+        String fileiras = jTextField2.getText();
+        String cadeiraPorFileira = jTextField2.getText();
         int tipoSala = jComboBox1.getSelectedIndex();
         int estadoSala = jComboBox2.getSelectedIndex();
-        if (nome.equals("") || capacidade.equals("")) {
+        if (nome.equals("") || fileiras.equals("") || cadeiraPorFileira.equals("") || fileiras.equals("")) {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
-        } else if (!capacidade.matches("[0-9]+")) {
-            JOptionPane.showMessageDialog(null, "Digite apenas números no campo capacidade!");
+        } else if (!fileiras.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo fileira!");
+        } else if (!cadeiraPorFileira.matches("[0+9]")){
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo Cadeira por fileira!");
         }else {
             if (ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {
                 JOptionPane.showMessageDialog(null, "Nome de sala já está sendo utilizado!");
             } else {
                 setVisible(false);
-                ControladorSala.getInstancia().cadastraNovaSala(nome, capacidade, tipoSala, estadoSala);
+                ControladorSala.getInstancia().cadastraNovaSala(nome, fileiras, cadeiraPorFileira, tipoSala, estadoSala);
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed

@@ -53,7 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1.setText("Usuários");
         jButton1.addActionListener(btManager);
 
-        jButton2.setText("Ingressos");
+        jButton2.setText("Vendas");
         jButton2.addActionListener(btManager);
 
         jButton3.setText("Filmes");

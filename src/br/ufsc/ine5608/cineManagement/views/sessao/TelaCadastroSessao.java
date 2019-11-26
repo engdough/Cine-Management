@@ -7,8 +7,11 @@ package br.ufsc.ine5608.cineManagement.views.sessao;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorPrincipal;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSessao;
+import br.ufsc.ine5608.cineManagement.models.Filme;
+import br.ufsc.ine5608.cineManagement.models.SalaCinema;
 
 import javax.swing.*;
+import java.util.Collection;
 
 /**
  *
@@ -19,8 +22,8 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroSessão
      */
-    public TelaCadastroSessao() {
-        initComponents();
+    public TelaCadastroSessao(String[] filmes, String[] salas) {
+        initComponents(filmes, salas);
     }
 
     /**
@@ -30,7 +33,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String[] filmes, String[] salas) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,14 +79,14 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(filmes));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(salas));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -153,26 +156,19 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
-            }
-        }
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        setVisible(false);
+        ControladorSessao.getInstancia().iniciaMenuSessao();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int filme = jComboBox1.getSelectedIndex();
+        int sala = jComboBox2.getSelectedIndex();
+        int horario = jComboBox3.getSelectedIndex();
+        //setVisible(false);
+        //ControladorSessao.getInstancia().adicionaSessao(filme, sala, horario);
+        System.out.println(Integer.toString(filme) + Integer.toString(sala) + Integer.toString(horario));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
