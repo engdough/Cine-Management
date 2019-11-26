@@ -186,7 +186,7 @@ public class TelaCadastroSalas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         } else if (!fileiras.matches("[0-9]+")) {
             JOptionPane.showMessageDialog(null, "Digite apenas números no campo fileira!");
-        } else if (!cadeiraPorFileira.matches("[0+9]")){
+        } else if (!cadeiraPorFileira.matches("[0-9]+")){
             JOptionPane.showMessageDialog(null, "Digite apenas números no campo Cadeira por fileira!");
         }else {
             if (ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {

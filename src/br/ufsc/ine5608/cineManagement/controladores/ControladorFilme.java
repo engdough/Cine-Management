@@ -103,8 +103,9 @@ public class ControladorFilme {
 
     public int geraCodigo(){
         int codigoNumerico = 1;
-        Filme[] filmes = mapeadorFilme.getList().toArray(new Filme[mapeadorFilme.tamanhoLista() - 1]);
+
         if(!mapeadorFilme.listaVazia()){
+            Filme[] filmes = mapeadorFilme.getList().toArray(new Filme[mapeadorFilme.tamanhoLista() - 1]);
             codigoNumerico = filmes[filmes.length - 1].getCodigo() + 1;
         }
         return codigoNumerico;
