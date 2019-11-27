@@ -1,12 +1,25 @@
 package br.ufsc.ine5608.cineManagement.controladores;
 
+import br.ufsc.ine5608.cineManagement.mapeadores.MapeadorSessao;
+import br.ufsc.ine5608.cineManagement.models.Filme;
+import br.ufsc.ine5608.cineManagement.models.SalaCinema;
+import br.ufsc.ine5608.cineManagement.models.Sessao;
 import br.ufsc.ine5608.cineManagement.views.TelaPrincipal;
+import br.ufsc.ine5608.cineManagement.views.TelaVendas;
+import br.ufsc.ine5608.cineManagement.views.ingresso.TelaVenderIngresso;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class ControladorPrincipal {
 
     private static ControladorPrincipal instancia;
+    private static MapeadorSessao mapeadorSessao;
 
     public ControladorPrincipal() {
+        this.mapeadorSessao = new MapeadorSessao();
     }
 
     public static ControladorPrincipal getInstancia() {
@@ -51,5 +64,12 @@ public class ControladorPrincipal {
             ControladorSala.getInstancia().iniciaMenuSala();
         else if (opcao.contains("5"))
             ControladorSessao.getInstancia().iniciaMenuSessao();
+        else if (opcao.contains("6")) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new TelaVendas().setVisible(true);
+                }
+            });
+        }
     }
 }

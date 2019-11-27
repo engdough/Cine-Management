@@ -50,10 +50,12 @@ public class ControladorSessao {
                     String[] arrayFilmes = new String[filmes.size()];
                     Collection<SalaCinema> salas = mapeadorSala.getList();
                     String[] arraySala = new String[salas.size()];
+                    int[] minutos = new int[filmes.size()];
                     int i = 0;
                     while (i < filmes.size()) {
                         for (Filme filme: filmes) {
                             arrayFilmes[i] = filme.getNome();
+                            minutos[i] = filme.getDuracaoMinutos();
                             i++;
                         }
                     }
@@ -64,7 +66,7 @@ public class ControladorSessao {
                             j++;
                         }
                     }
-                    new TelaCadastroSessao(arrayFilmes, arraySala).setVisible(true);
+                    new TelaCadastroSessao(arrayFilmes, arraySala, minutos).setVisible(true);
                 }
             });
         } else if (opcao.contains("2")){
@@ -78,7 +80,7 @@ public class ControladorSessao {
         }
     }
 
-    public void adicionaSessao(String filme, String sala, String horario) {
+    public void adicionaSessao(String filme, String sala, String horario, String preco, String pontos) {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         Date horaInicio = null;
         Collection<Filme> filmes = mapeadorFilme.getList();
@@ -94,6 +96,7 @@ public class ControladorSessao {
                 sessao.setSala(response);
         });
 
+        horario = horario.substring(0,2) + ":" + horario.substring(2);
         try {
             Date date = formatter.parse(horario);
             horaInicio = date;
@@ -101,6 +104,8 @@ public class ControladorSessao {
             e.printStackTrace();
         }
 
+        sessao.setPontos(Integer.parseInt(pontos));
+        sessao.setPreco(Float.parseFloat(preco));
         sessao.setHoraInicio(horaInicio);
         sessao.setCodigo(geraCodigo());
         mapeadorSessao.put(sessao);

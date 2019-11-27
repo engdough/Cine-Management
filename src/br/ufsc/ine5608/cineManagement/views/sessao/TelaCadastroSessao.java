@@ -25,11 +25,13 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     private String[] filmes1;
     private String[] salas1;
     private int[] horarios;
-    private String[] horariosS = new String[]{"jj"};
+    private String[] horariosS = new String[]{""};
+    private int[] minutos;
 
-    public TelaCadastroSessao(String[] filmes, String[] salas) {
+    public TelaCadastroSessao(String[] filmes, String[] salas, int[] minutos) {
         this.filmes1 = filmes;
         this.salas1 = salas;
+        this.minutos = minutos;
         initComponents(filmes, salas);
     }
 
@@ -207,10 +209,16 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         int filme = jComboBox1.getSelectedIndex();
         int sala = jComboBox2.getSelectedIndex();
         int horario = jComboBox3.getSelectedIndex();
-        String preco = jLabel6.getText();
-        String pontos = jLabel5.getText();
-//        setVisible(false);
-//        ControladorSessao.getInstancia().adicionaSessao(filme, salas1[sala], horario, preco, pontos);
+        String preco = jTextField2.getText();
+        String pontos = jTextField1.getText();
+        int minutos = this.minutos[filme];
+        setVisible(false);
+        ControladorSessao.getInstancia().adicionaSessao(this.filmes1[filme], salas1[sala], "1340", preco, pontos);
+        int result = minutos + (10 - (minutos % 10) + 30);
+//        if (this.horarios[horario] + result == this.horarios[horario] + result/10 + 30) {
+//            setVisible(false);
+//            ControladorSessao.getInstancia().adicionaSessao(this.filmes1[filme], salas1[sala], this.horariosS[horario], preco, pontos);
+//        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

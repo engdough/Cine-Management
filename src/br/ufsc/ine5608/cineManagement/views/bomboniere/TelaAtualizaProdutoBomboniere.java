@@ -19,9 +19,9 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastraProdutoBomboniere
      */
-    public TelaAtualizaProdutoBomboniere(String nome,String descricao, int estoque, Float preco, String codigo) {
+    public TelaAtualizaProdutoBomboniere(String nome,String descricao, Float preco, String codigo) {
         this.codigo = codigo;
-        initComponents(nome, descricao, estoque, preco);
+        initComponents(nome, descricao, preco);
     }
 
     /**
@@ -31,7 +31,7 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String nome,String descricao, int estoque, Float preco) {
+    private void initComponents(String nome,String descricao, Float preco) {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
 
         jTextField1.setText(nome);
         jTextField2.setText(descricao);
-        jTextField3.setText(Integer.toString(estoque));
+        //jTextField3.setText(Integer.toString(estoque));
         jTextField4.setText(Float.toString(preco));
         jTextField5.setText(codigo);
 

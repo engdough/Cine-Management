@@ -22,7 +22,7 @@ public class TelaExibeInfoBomboniere extends JFrame{
     private JLabel colunaEstoque2;
     private JLabel colunaPreco2;
 
-    public TelaExibeInfoBomboniere(String codigo, String nome, int estoque, float preco) {
+    public TelaExibeInfoBomboniere(String codigo, String nome, float preco) {
 
         colunaCodigo2 = new JLabel();
         colunaNome2 = new JLabel();
@@ -84,11 +84,11 @@ public class TelaExibeInfoBomboniere extends JFrame{
         g.gridy = 2;
         container.add(colunaNome2, g);
 
-        colunaEstoque2.setText(Integer.toString(estoque));
-        g.fill = GridBagConstraints.HORIZONTAL;
-        g.gridx = 2;
-        g.gridy = 2;
-        container.add(colunaEstoque2, g);
+//        colunaEstoque2.setText(Integer.toString(estoque));
+//        g.fill = GridBagConstraints.HORIZONTAL;
+//        g.gridx = 2;
+//        g.gridy = 2;
+//        container.add(colunaEstoque2, g);
 
         colunaPreco2.setText(Float.toString(preco));
         g.fill = GridBagConstraints.HORIZONTAL;

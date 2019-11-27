@@ -68,7 +68,7 @@ public class ControladorBomboniere {
         ProdutoBomboniere produto = new ProdutoBomboniere();
         produto.setNome(nome);
         produto.setDescricao(descricao);
-        produto.setEstoque(Integer.parseInt(estoque));
+        //produto.setEstoque(Integer.parseInt(estoque));
         produto.setPreco(Float.parseFloat(preco));
         produto.setCodigoBarra(codigo);
         mapeadorBomboniere.put(produto);
@@ -79,7 +79,7 @@ public class ControladorBomboniere {
         ProdutoBomboniere produto = new ProdutoBomboniere();
         produto.setNome(nome);
         produto.setDescricao(descricao);
-        produto.setEstoque(Integer.parseInt(estoque));
+        //produto.setEstoque(Integer.parseInt(estoque));
         produto.setPreco(Float.parseFloat(preco));
         produto.setCodigoBarra(codigo);
         mapeadorBomboniere.put(produto);
@@ -90,7 +90,7 @@ public class ControladorBomboniere {
         ProdutoBomboniere produto = mapeadorBomboniere.get(codigo);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAtualizaProdutoBomboniere(produto.getNome(), produto.getDescricao(), produto.getEstoque(), produto.getPreco(),produto.getCodigoBarra()).setVisible(true);
+                new TelaAtualizaProdutoBomboniere(produto.getNome(), produto.getDescricao(), produto.getPreco(),produto.getCodigoBarra()).setVisible(true);
             }
         });
     }
@@ -102,7 +102,7 @@ public class ControladorBomboniere {
 
     public void exibirInfoBomboniere(String codigo) {
         ProdutoBomboniere produto = mapeadorBomboniere.get(codigo);
-        new TelaExibeInfoBomboniere(produto.getCodigoBarra(), produto.getNome(), produto.getEstoque(), produto.getPreco());
+        new TelaExibeInfoBomboniere(produto.getCodigoBarra(), produto.getNome(), produto.getPreco());
     }
 
     public void listarProdutos(Collection<ProdutoBomboniere> produtos) {
@@ -114,7 +114,7 @@ public class ControladorBomboniere {
         produtos.stream().forEach(produto -> {
             codigos.add(produto.getCodigoBarra());
             nomes.add(produto.getNome());
-            estoque.add(produto.getEstoque());
+            //estoque.add(produto.getEstoque());
             precos.add(produto.getPreco());
         });
 
