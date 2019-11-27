@@ -198,4 +198,21 @@ public class ControladorSessao {
         }
         return false;
     }
+
+    public int[] buscaHorarios(String sala) {
+        SalaCinema salaCinema = mapeadorSala.get(sala);
+        boolean[] horariosLocados = salaCinema.getHorariosLocados();
+        int[] horariosDisponiveis = salaCinema.getHorarios();
+        int[] horarios = new int[67];
+        int i = 0;
+        int j = 0;
+        for (boolean horariolocado: horariosLocados) {
+            if (!horariolocado){
+                horarios[i] = horariosDisponiveis[j];
+                i++;
+            }
+            j++;
+        }
+        return horarios;
+    }
 }
