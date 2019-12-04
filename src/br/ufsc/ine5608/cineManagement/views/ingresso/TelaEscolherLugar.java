@@ -118,7 +118,7 @@ public class TelaEscolherLugar extends JFrame {
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         setVisible(false);
-        ControladorPrincipal.getInstancia().iniciaSistema();
+        ControladorVendas.getInstancia().iniciaVendaIngresso();
     }
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

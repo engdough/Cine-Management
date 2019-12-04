@@ -36,6 +36,7 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
     private JLabel colunaSala;
     private JLabel colunaHora;
     private JButton botaoVoltar;
+    private Sessao sessao;
     /**
      * Creates new form TelaVenderIngresso
      */
@@ -88,6 +89,7 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
             arrayColunaSala.add(new JLabel());
             arrayColunaHota.add(new JLabel());
             arrayButtonDelete.add(new JButton());
+            this.sessao = sessao;
 
             arrayColunaFilme.get(i).setText(sessao.getFilme().getNome());
             g.fill = GridBagConstraints.HORIZONTAL;
@@ -132,8 +134,14 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
         g.gridy = i + 2;
         container.add(botaoVoltar, g);
 
-        GerenciadorBotoes btManager = new GerenciadorBotoes();
-        botaoVoltar.addActionListener(btManager);
+//        GerenciadorBotoes btManager = new GerenciadorBotoes();
+//        botaoVoltar.addActionListener(btManager);
+
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarActionPerformed(evt, sessao);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -150,14 +158,19 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
         ControladorVendas.getInstancia().iniciaTelaEscolherLugar(sessao);
     }
 
-    private class GerenciadorBotoes implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            setVisible(false);
-
-            ControladorPrincipal.getInstancia().iniciaSistema();
-        }
-
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt, Sessao sessao) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);
+        ControladorPrincipal.getInstancia().controlaMenu("6");
     }
+
+//    private class GerenciadorBotoes implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent ae) {
+//            setVisible(false);
+//
+//            ControladorPrincipal.getInstancia().iniciaSistema();
+//        }
+//
+//    }
 }

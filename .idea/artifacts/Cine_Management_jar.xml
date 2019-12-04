@@ -3,6 +3,9 @@
     <output-path>$PROJECT_DIR$/../artifacts/Cine_Management_jar</output-path>
     <root id="archive" name="Cine-Management.jar">
       <element id="module-output" name="Cine-Management" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/manifest.mf" output-file-name="MANIFEST.MF" />
+      </element>
     </root>
   </artifact>
 </component>
