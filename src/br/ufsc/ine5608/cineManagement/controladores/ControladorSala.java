@@ -64,7 +64,7 @@ public class ControladorSala {
         } else if (opcao.contains("3")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new TelaExcluirSala().setVisible(true);
+                    new TelaBucaSala().setVisible(true);
                 }
             });
         } else if (opcao.contains("4")) {
@@ -108,7 +108,7 @@ public class ControladorSala {
         });
     }
 
-    public void salvaSalaAtualizada(String nomeSala, String fileira, String cadeiraPorFileira, int estado, int tipo) {
+    public void salvaSalaAtualizada(String nomeSala, String fileira, String cadeiraPorFileira, int estado, int tipo, String nomeAntigo) {
         SalaCinema sala = new SalaCinema();
         sala.setNome(nomeSala);
         sala.setFileiras(Integer.parseInt(fileira));
@@ -122,6 +122,7 @@ public class ControladorSala {
         else
             sala.setTipoSala(TipoSala.TIPO_3D);
         mapeadorSala.put(sala);
+        mapeadorSala.remove(nomeAntigo);
         iniciaMenuSala();
     }
 
@@ -156,5 +157,18 @@ public class ControladorSala {
             }
         }
         return false;
+    }
+
+    public void buscarSalaInfo() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaBuscaSalaInfo().setVisible(true);
+            }
+        });
+    }
+
+    public void exibeInfoSala(String sala) {
+        SalaCinema salaCinema = mapeadorSala.get(sala);
+        new TelaexibeInfoSala(salaCinema.getNome(), salaCinema.getFileiras(), salaCinema.getCadeirasPorFileira(), salaCinema.isStatus(), salaCinema.getTipoSala());
     }
 }

@@ -6,10 +6,12 @@
 package br.ufsc.ine5608.cineManagement.views.ingresso;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
+import br.ufsc.ine5608.cineManagement.controladores.ControladorPrincipal;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSessao;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorVendas;
 import br.ufsc.ine5608.cineManagement.models.Filme;
 import br.ufsc.ine5608.cineManagement.models.SalaCinema;
+import br.ufsc.ine5608.cineManagement.models.Sessao;
 import br.ufsc.ine5608.cineManagement.views.sessao.TelaListarSessao;
 
 import javax.swing.*;
@@ -19,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
     /**
      * Creates new form TelaVenderIngresso
      */
-    public TelaVenderIngresso(List<Filme> filmes, List<SalaCinema> salas, List<Date> horarios) {
+    public TelaVenderIngresso(Collection<Sessao> sessoes) {
         ArrayList<JLabel> arrayColunaFilme = new ArrayList<>();
         ArrayList<JLabel> arrayColunaSala = new ArrayList<>();
         ArrayList<JLabel> arrayColunaHota = new ArrayList<>();
@@ -80,26 +83,26 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
 
         int i = 0;
 
-        for (Filme filme: filmes) {
+        for (Sessao sessao: sessoes) {
             arrayColunaFilme.add(new JLabel());
             arrayColunaSala.add(new JLabel());
             arrayColunaHota.add(new JLabel());
             arrayButtonDelete.add(new JButton());
 
-            arrayColunaFilme.get(i).setText(filme.getNome());
+            arrayColunaFilme.get(i).setText(sessao.getFilme().getNome());
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 0;
             g.gridy = i+2;
             container.add(arrayColunaFilme.get(i), g);
 
-            arrayColunaSala.get(i).setText(salas.get(i).getNome());
+            arrayColunaSala.get(i).setText(sessao.getSala().getNome());
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 1;
             g.gridy = i+2;
             container.add(arrayColunaSala.get(i), g);
 
             DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-            String hora = dateFormat.format(horarios.get(i));
+            String hora = dateFormat.format(sessao.getHoraInicio());
             arrayColunaHota.get(i).setText(hora);
             g.fill = GridBagConstraints.HORIZONTAL;
             g.gridx = 2;
@@ -116,7 +119,7 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
 
             arrayButtonDelete.get(i).addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButtonActionPerformed(evt, salas.get(n), filmes.get(n), horarios.get(n));
+                    jButtonActionPerformed(evt, sessao);
                 }
             });
 
@@ -142,9 +145,9 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void jButtonActionPerformed(java.awt.event.ActionEvent evt, SalaCinema salas, Filme filme, Date data) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonActionPerformed(java.awt.event.ActionEvent evt, Sessao sessao) {//GEN-FIRST:event_jButton1ActionPerformed
         setVisible(false);
-        ControladorVendas.getInstancia().iniciaTelaEscolherLugar(salas, filme, data);
+        ControladorVendas.getInstancia().iniciaTelaEscolherLugar(sessao);
     }
 
     private class GerenciadorBotoes implements ActionListener {
@@ -153,7 +156,7 @@ public class TelaVenderIngresso extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent ae) {
             setVisible(false);
 
-            ControladorSessao.getInstancia().iniciaMenuSessao();
+            ControladorPrincipal.getInstancia().iniciaSistema();
         }
 
     }

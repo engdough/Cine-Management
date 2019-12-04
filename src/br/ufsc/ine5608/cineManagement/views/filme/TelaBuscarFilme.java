@@ -8,6 +8,8 @@ package br.ufsc.ine5608.cineManagement.views.filme;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.views.usuario.*;
 
+import javax.swing.*;
+
 /**
  *
  * @author erico
@@ -118,8 +120,14 @@ public class TelaBuscarFilme extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);
-        ControladorFilme.getInstancia().exibirInfoFilme(jTextField1.getText());
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Entre com o código do filme!");
+        } else if (ControladorFilme.getInstancia().filmeExiste(jTextField1.getText())){
+            JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+        }else {
+            setVisible(false);
+            ControladorFilme.getInstancia().exibirInfoFilme(jTextField1.getText());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

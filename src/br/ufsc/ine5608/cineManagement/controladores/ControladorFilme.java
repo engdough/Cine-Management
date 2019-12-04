@@ -147,4 +147,9 @@ public class ControladorFilme {
 
         new TelaListaFilmes(codigos, nomes, descricoes, classificacoes, generos, duracoes);
     }
+
+    public boolean filmeExiste(String filme){
+        Filme filme1 = mapeadorFilme.get(filme);
+        return filme1 == null;
+    }
 }

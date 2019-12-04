@@ -2,6 +2,7 @@ package br.ufsc.ine5608.cineManagement.views.sala;
 
 import br.ufsc.ine5608.cineManagement.controladores.ControladorFilme;
 import br.ufsc.ine5608.cineManagement.controladores.ControladorSala;
+import br.ufsc.ine5608.cineManagement.controladores.ControladorSessao;
 import br.ufsc.ine5608.cineManagement.enums.TipoSala;
 import br.ufsc.ine5608.cineManagement.models.Filme;
 import br.ufsc.ine5608.cineManagement.models.SalaCinema;
@@ -29,6 +30,7 @@ public class TelaListarSala extends JFrame{
         ArrayList<JLabel> arrayColunaCapacidade = new ArrayList<>();
         ArrayList<JLabel> arrayColunaEstado = new ArrayList<>();
         ArrayList<JLabel> arrayColunaTipo = new ArrayList<>();
+        ArrayList<JButton> arrayButtonDelete = new ArrayList<>();
 
         JPanel container = new JPanel();
         JScrollPane scrPane = new JScrollPane(container);
@@ -80,6 +82,7 @@ public class TelaListarSala extends JFrame{
             arrayColunaCapacidade.add(new JLabel());
             arrayColunaEstado.add(new JLabel());
             arrayColunaTipo.add(new JLabel());
+            arrayButtonDelete.add(new JButton());
 
             arrayColunaNome.get(i).setText(nome);
             g.fill = GridBagConstraints.HORIZONTAL;
@@ -105,6 +108,18 @@ public class TelaListarSala extends JFrame{
             g.gridy = i+2;
             container.add(arrayColunaTipo.get(i), g);
 
+            arrayButtonDelete.get(i).setText("Excluir");
+            g.fill = GridBagConstraints.HORIZONTAL;
+            g.gridx = 4;
+            g.gridy = i+2;
+            container.add(arrayButtonDelete.get(i), g);
+
+            arrayButtonDelete.get(i).addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonActionPerformed(evt, nome);
+                }
+            });
+
             i++;
         }
 
@@ -123,6 +138,15 @@ public class TelaListarSala extends JFrame{
         setVisible(true);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void jButtonActionPerformed(java.awt.event.ActionEvent evt, String n) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object[] options = {"cancelar", "excluir"};
+        int opcao = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir", "Confirmar exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (opcao == 1) {
+            setVisible(false);
+            ControladorSala.getInstancia().excluirSala(n);
+        }
     }
 
     private class GerenciadorBotoes implements ActionListener {

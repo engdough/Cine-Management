@@ -47,9 +47,9 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        //jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        //jTextField6 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,19 +81,19 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
 
         jLabel3.setText("Descrição:");
 
-        jLabel4.setText("Estoque:");
+        jLabel4.setText("Código de barras:");
 
         jLabel5.setText("Preço:");
 
-        jLabel6.setText("Código de barras:");
+        //jLabel6.setText("Código de barras:");
 
-        jLabel7.setText("Pontos:");
+        //jLabel7.setText("Pontos:");
 
         jTextField1.setText(nome);
         jTextField2.setText(descricao);
-        //jTextField3.setText(Integer.toString(estoque));
+        jTextField3.setText(codigo);
         jTextField4.setText(Float.toString(preco));
-        jTextField5.setText(codigo);
+        //jTextField5.setText(codigo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,7 +108,7 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                                        //.addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
@@ -120,7 +120,7 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
                                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField6)))))
+                                    ))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(210, 210, 210)
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -157,8 +157,8 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    //.addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    )
                 .addGap(48, 48, 48)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -181,16 +181,16 @@ public class TelaAtualizaProdutoBomboniere extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nome = jTextField1.getText();
         String descricao = jTextField2.getText();
-        String estoque = jTextField3.getText();
+        String codigo = jTextField3.getText();
         String preco = jTextField4.getText();
-        String codigo = jTextField5.getText();
-        if (nome.equals("") || descricao.equals("") || estoque.equals("") || preco.equals("") || codigo.equals("")) {
+        //String codigo = jTextField5.getText();
+        if (nome.equals("") || descricao.equals("") || preco.equals("") || codigo.equals("")) {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         } else if (!this.codigo.equals(codigo) && ControladorBomboniere.getInstancia().verificacodigo(codigo)){
             JOptionPane.showMessageDialog(null, "Código já cadastrado!");
         } else {
             setVisible(false);
-            ControladorBomboniere.getInstancia().atualizaInfoProduto(nome, descricao, estoque, preco, codigo);
+            ControladorBomboniere.getInstancia().atualizaInfoProduto(nome, descricao, preco, codigo);
         }
     }
 

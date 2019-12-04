@@ -200,11 +200,13 @@ public class TelaAtualizarSalas extends javax.swing.JFrame {
         if (nome.equals("") || fileira.equals("") || cadeiraPorFileira.equals("")) {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
         } else if (!fileira.matches("[0-9]+")) {
-            JOptionPane.showMessageDialog(null, "Digite apenas números no campo capacidade!");
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo fileiras!");
         }else if (!cadeiraPorFileira.matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Digite apenas números no campo cadeiras!");
+        } else {
             if (this.nome.equals(nome) || !ControladorSala.getInstancia().verificaNomeUtilizado(nome)) {
                 setVisible(false);
-                ControladorSala.getInstancia().salvaSalaAtualizada(nome, fileira, cadeiraPorFileira, estadoSala, tipoSala);
+                ControladorSala.getInstancia().salvaSalaAtualizada(nome, fileira, cadeiraPorFileira, estadoSala, tipoSala, this.nome);
             } else {
                 JOptionPane.showMessageDialog(null, "Nome de sala já está sendo utilizado!");
             }

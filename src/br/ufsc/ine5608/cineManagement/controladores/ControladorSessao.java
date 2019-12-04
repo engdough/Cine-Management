@@ -80,20 +80,25 @@ public class ControladorSessao {
         }
     }
 
-    public void adicionaSessao(String filme, String sala, String horario, String preco, String pontos) {
+    public void adicionaSessao(String filme, String sala, String horario, String preco, String pontos, int i) {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         Date horaInicio = null;
+        SalaCinema salaCinema = null;
+        int horarioInicio = Integer.parseInt(horario);
         Collection<Filme> filmes = mapeadorFilme.getList();
-        Sessao sessao = new Sessao();
+
+        for (SalaCinema response: mapeadorSala.getList()){
+            if (response.getNome().contains(sala)) {
+                salaCinema = response;
+            }
+        }
+
+        Sessao sessao = new Sessao(salaCinema.getFileiras(), salaCinema.getCadeirasPorFileira());
+        sessao.setSala(salaCinema);
+
         filmes.stream().forEach(response -> {
             if (response.getNome().contains(filme))
                 sessao.setFilme(response);
-        });
-
-        Collection<SalaCinema> salas = mapeadorSala.getList();
-        salas.stream().forEach(response -> {
-            if (response.getNome().contains(sala))
-                sessao.setSala(response);
         });
 
         horario = horario.substring(0,2) + ":" + horario.substring(2);
@@ -104,11 +109,23 @@ public class ControladorSessao {
             e.printStackTrace();
         }
 
+        for (int j = 0; j < salaCinema.getHorarios().length; j++) {
+            if (salaCinema.getHorarios()[j] == horarioInicio && i >= 0) {
+                if (horarioInicio%100 == 50)
+                    horarioInicio = horarioInicio + 50;
+                else
+                    horarioInicio = horarioInicio + 10;
+                salaCinema.getHorariosLocados()[j] = true;
+                i--;
+            }
+        }
+
         sessao.setPontos(Integer.parseInt(pontos));
         sessao.setPreco(Float.parseFloat(preco));
         sessao.setHoraInicio(horaInicio);
         sessao.setCodigo(geraCodigo());
         mapeadorSessao.put(sessao);
+        mapeadorSala.put(salaCinema);
         iniciaMenuSessao();
     }
 

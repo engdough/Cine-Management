@@ -14,6 +14,7 @@ public class Sessao implements Serializable {
     private SalaCinema sala;
     private int pontos;
     private float preco;
+    private boolean[][] lugares;
 
 
     public Sessao(Filme filme, Date horaInicio, Date horaFim, SalaCinema sala, int pontos, float preco) {
@@ -23,6 +24,10 @@ public class Sessao implements Serializable {
         this.sala = sala;
         this.pontos = pontos;
         this.preco = preco;
+    }
+
+    public Sessao(int fileira, int lugares) {
+        this.lugares = new boolean[fileira][lugares];
     }
 
     public Sessao() {
@@ -83,5 +88,13 @@ public class Sessao implements Serializable {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public boolean[][] getLugares() {
+        return lugares;
+    }
+
+    public void setLugares(boolean[][] lugares) {
+        this.lugares = lugares;
     }
 }

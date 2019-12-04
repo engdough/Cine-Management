@@ -60,7 +60,7 @@ public class TelaSala extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Excluir");
+        jButton4.setText("Buscar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -152,7 +152,7 @@ public class TelaSala extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         setVisible(false);
-        ControladorSala.getInstancia().executaMenuSala("3");
+        ControladorSala.getInstancia().buscarSalaInfo();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

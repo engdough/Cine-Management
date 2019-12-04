@@ -64,7 +64,7 @@ public class ControladorBomboniere {
         }
     }
 
-    public void addProduto(String nome, String descricao, String estoque, String preco, String codigo) {
+    public void addProduto(String nome, String descricao, String preco, String codigo) {
         ProdutoBomboniere produto = new ProdutoBomboniere();
         produto.setNome(nome);
         produto.setDescricao(descricao);
@@ -75,7 +75,7 @@ public class ControladorBomboniere {
         iniciaMenuBomboniere();
     }
 
-    public void atualizaInfoProduto(String nome, String descricao, String estoque, String preco, String codigo) {
+    public void atualizaInfoProduto(String nome, String descricao, String preco, String codigo) {
         ProdutoBomboniere produto = new ProdutoBomboniere();
         produto.setNome(nome);
         produto.setDescricao(descricao);

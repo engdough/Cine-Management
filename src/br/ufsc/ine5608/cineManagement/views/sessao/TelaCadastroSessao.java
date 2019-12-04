@@ -211,14 +211,41 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         int horario = jComboBox3.getSelectedIndex();
         String preco = jTextField2.getText();
         String pontos = jTextField1.getText();
-        int minutos = this.minutos[filme];
-        setVisible(false);
-        ControladorSessao.getInstancia().adicionaSessao(this.filmes1[filme], salas1[sala], "1340", preco, pontos);
-        int result = minutos + (10 - (minutos % 10) + 30);
-//        if (this.horarios[horario] + result == this.horarios[horario] + result/10 + 30) {
-//            setVisible(false);
-//            ControladorSessao.getInstancia().adicionaSessao(this.filmes1[filme], salas1[sala], this.horariosS[horario], preco, pontos);
-//        }
+        int minutos = this.minutos[filme] + 30;
+        int hFinal = 0;
+        int i = 0;
+        boolean hOk = false;
+
+        while (minutos >= 0) {
+            System.out.println("-------" + minutos);
+            minutos -= 10;
+            int hAnterior = horarios[horario + i];
+            if (hAnterior%100 == 50)
+                hFinal = hAnterior + 50;
+            else
+                hFinal = hAnterior + 10;
+
+            if (hFinal >= 2300) {
+                System.out.println("passou das 23 ok");
+                hOk = true;
+                i++;
+                break;
+            } else if (hFinal == horarios[1 + i + horario]) {
+                System.out.println(hFinal);
+                i++;
+                if (minutos <= 0) {
+                    hOk = true;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Horário não disponivel!");;
+                break;
+            }
+        }
+
+        if (hOk) {
+            setVisible(false);
+            ControladorSessao.getInstancia().adicionaSessao(this.filmes1[filme], salas1[sala], horariosS[horario], preco, pontos, i);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
